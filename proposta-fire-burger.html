@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial - Fire Burger - Vitória da Conquista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #110905;
+    --brown: #26120a;
+    --ember: #ff3d10;
+    --orange: #ff8a17;
+    --gold: #ffbd35;
+    --cream: #fff0dc;
+    --muted: #9b8170;
+    --line: rgba(255, 138, 23, .22);
+    --paper: #fff8ef;
+    --ink: #24140d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: "Sora", Arial, sans-serif;
+    background: #d8d2ca;
+    color: var(--ink);
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 14px auto;
+    padding: 20mm;
+    background: var(--paper);
+    box-shadow: 0 12px 36px rgba(0,0,0,.18);
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  .cover {
+    background:
+      radial-gradient(circle at 16% 18%, rgba(255,61,16,.42), transparent 34%),
+      radial-gradient(circle at 82% 76%, rgba(255,138,23,.28), transparent 36%),
+      linear-gradient(145deg, #0a0503, #1a0b05 58%, #0a0503);
+    color: var(--cream);
+  }
+
+  .cover:before,
+  .band:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: .08;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(255,255,255,.35) 0 1px, transparent 1px 9px);
+    pointer-events: none;
+  }
+
+  .brand-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 2;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: "Anton", sans-serif;
+    font-size: 24px;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+  }
+
+  .brand img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 2px rgba(255,189,53,.55), 0 0 28px rgba(255,61,16,.55);
+  }
+
+  .brand b { color: var(--orange); font-weight: 400; }
+
+  .partner {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--muted);
+    font-weight: 800;
+  }
+
+  .cover .partner { color: rgba(255,240,220,.62); }
+
+  .hero {
+    position: relative;
+    z-index: 2;
+    min-height: 215mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(255,138,23,.12);
+    color: var(--orange);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    font-weight: 900;
+    margin-bottom: 18px;
+  }
+
+  h1, h2, h3 { line-height: 1.08; letter-spacing: -.04em; }
+
+  h1 {
+    font-size: 58px;
+    max-width: 650px;
+    font-weight: 900;
+  }
+
+  h1 span,
+  h2 span { color: var(--orange); }
+
+  .cover h1 {
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    letter-spacing: .01em;
+    font-size: 72px;
+    text-transform: uppercase;
+  }
+
+  .lead {
+    max-width: 590px;
+    margin-top: 22px;
+    font-size: 17px;
+    line-height: 1.62;
+    color: rgba(255,240,220,.74);
+  }
+
+  .meta {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+  }
+
+  .meta .lbl {
+    color: rgba(255,240,220,.48);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .meta .val {
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .section-head { margin: 22px 0 24px; }
+
+  .kicker {
+    color: var(--ember);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 34px;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.62;
+    color: #5c4738;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .card, .deliverable, .price-card {
+    background: #fff;
+    border: 1px solid #edd9c3;
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .card .num {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange), var(--ember));
+    color: #1b0902;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+
+  .card h3, .deliverable h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+
+  .deliverables {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .deliverable {
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(255,138,23,.12);
+    color: var(--ember);
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    font-weight: 900;
+  }
+
+  .tag {
+    white-space: nowrap;
+    border-radius: 999px;
+    background: rgba(255,61,16,.1);
+    color: var(--ember);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-weight: 900;
+    padding: 6px 10px;
+  }
+
+  ul { margin: 10px 0 0 18px; }
+  li { font-size: 13px; line-height: 1.55; color: #5c4738; margin-bottom: 4px; }
+
+  .flow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  .flow .card { min-height: 150px; }
+
+  .price-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 20px;
+  }
+
+  .price-card {
+    border-width: 2px;
+    position: relative;
+  }
+
+  .price-card.best {
+    border-color: var(--ember);
+    background: linear-gradient(180deg, rgba(255,138,23,.12), #fff 62%);
+  }
+
+  .badge {
+    position: absolute;
+    right: 18px;
+    top: -12px;
+    background: var(--ember);
+    color: #fff;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .mode {
+    color: #8b6d56;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .price {
+    font-size: 46px;
+    font-weight: 900;
+    letter-spacing: -.05em;
+  }
+
+  .price small {
+    font-size: 16px;
+    color: #7c6352;
+    letter-spacing: 0;
+  }
+
+  .note {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+
+  .included {
+    margin-top: 20px;
+    background: #fff;
+    border: 1px solid #edd9c3;
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .included ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 24px;
+  }
+
+  .anchor-box {
+    margin-top: 20px;
+    background: #fff;
+    border: 1px solid #edd9c3;
+    border-radius: 18px;
+    padding: 22px;
+  }
+
+  .anchor-box h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .anchor-prices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 18px 0;
+  }
+
+  .anchor-price {
+    position: relative;
+    border-radius: 16px;
+    padding: 18px 14px;
+    background: #fff4e7;
+    border: 1px solid #f0c99c;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .anchor-price:after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: 50%;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--ember);
+    transform: rotate(-9deg);
+  }
+
+  .anchor-price .label {
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #8b6d56;
+    font-weight: 900;
+    margin-bottom: 6px;
+  }
+
+  .anchor-price .value {
+    font-size: 31px;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -.05em;
+    color: #4a2617;
+  }
+
+  .anchor-call {
+    border-radius: 14px;
+    padding: 16px 18px;
+    background: linear-gradient(135deg, rgba(255,138,23,.14), rgba(255,61,16,.08));
+    border: 1px solid rgba(255,61,16,.18);
+  }
+
+  .anchor-call strong {
+    color: var(--ember);
+  }
+
+  .warn {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: #fff4e7;
+    border: 1px solid #f0c99c;
+    font-size: 12.5px;
+    color: #68452b;
+  }
+
+  .footer {
+    position: absolute;
+    left: 20mm;
+    right: 20mm;
+    bottom: 14mm;
+    border-top: 1px solid #ecd7bf;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    color: #8b6d56;
+    font-size: 11px;
+  }
+
+  .pdf-hint {
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    background: #140805;
+    color: #fff;
+    border-radius: 999px;
+    padding: 11px 18px;
+    font-size: 13px;
+    z-index: 9999;
+    box-shadow: 0 12px 30px rgba(0,0,0,.28);
+  }
+
+  .pdf-hint b { color: var(--orange); }
+
+  @page { size: A4; margin: 0; }
+
+  @media print {
+    html, body { background: #fff; }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      width: 210mm;
+      height: 297mm;
+    }
+    .pdf-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div class="brand-row">
+    <div class="brand"><img src="logo%20fire%20burguer.jpeg" alt="Fire Burger">FIRE <b>BURGER</b></div>
+    <div class="partner">Proposta Comercial</div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Presenca digital local</div>
+    <h1>Pacote digital <span>completo</span> para a Fire Burger.</h1>
+    <p class="lead">
+      Site profissional, Google Meu Negocio, Linktree, QR Code de avaliacao e identidade visual para Instagram trabalhando juntos para facilitar pedidos, fortalecer a marca e trazer mais clientes locais.
+    </p>
+    <div class="meta">
+      <div>
+        <div class="lbl">Apresentado a</div>
+        <div class="val">Vitor - Fire Burger</div>
+      </div>
+      <div>
+        <div class="lbl">Instagram</div>
+        <div class="val">@fireburger.candeias</div>
+      </div>
+      <div>
+        <div class="lbl">Formato</div>
+        <div class="val">Entrega completa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="brand-row">
+    <div class="brand"><img src="logo%20fire%20burguer.jpeg" alt="Fire Burger">FIRE <b>BURGER</b></div>
+    <div class="partner">01 - Diagnostico</div>
+  </div>
+
+  <div class="section-head">
+    <div class="kicker">Oportunidade</div>
+    <h2>A Fire Burger ja tem sabor. Agora precisa ter presenca digital no mesmo nivel.</h2>
+    <p>A marca tem apelo visual forte, comida chamativa e publico local. O ponto a melhorar e fazer essa forca aparecer de forma organizada no site, Google, Instagram e canais de pedido.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="num">1</div>
+      <h3>Pedidos precisam ser mais faceis</h3>
+      <p>O cliente deve bater o olho e encontrar rapidamente: pedir agora, cardapio, WhatsApp, localizacao e Instagram.</p>
+    </div>
+    <div class="card">
+      <div class="num">2</div>
+      <h3>Google precisa virar vitrine</h3>
+      <p>Quando alguem procura hamburgueria em Vitória da Conquista, a Fire Burger precisa aparecer bem organizada, com fotos, horarios, link e avaliacoes.</p>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <h3>Instagram precisa parecer marca</h3>
+      <p>Capas de destaque soltas passam improviso. Um sistema visual proprio deixa o perfil mais forte e mais facil de navegar.</p>
+    </div>
+    <div class="card">
+      <div class="num">4</div>
+      <h3>Avaliacao boa precisa ser estimulada</h3>
+      <p>QR Code no balcao, embalagem ou mesa ajuda clientes satisfeitos a avaliarem no Google sem complicacao.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Fire Burger - Vitória da Conquista - Proposta Comercial</span>
+    <span>02</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="brand-row">
+    <div class="brand"><img src="logo%20fire%20burguer.jpeg" alt="Fire Burger">FIRE <b>BURGER</b></div>
+    <div class="partner">02 - Entrega</div>
+  </div>
+
+  <div class="section-head">
+    <div class="kicker">O pacote</div>
+    <h2>Tudo que entra na entrega.</h2>
+    <p>Nao e so um site. E um pacote para deixar a Fire Burger mais facil de encontrar, pedir, avaliar e compartilhar.</p>
+  </div>
+
+  <div class="deliverables">
+    <div class="deliverable">
+      <div class="icon">1</div>
+      <div>
+        <h3>Site profissional responsivo</h3>
+        <p>Site com identidade de fogo e brasa, adaptado para celular, tablet e desktop, com CTA forte para pedido.</p>
+        <ul>
+          <li>Botao Pedir Agora integrado ao link de pedidos.</li>
+          <li>Secoes de cardapio, galeria, localizacao e contato.</li>
+          <li>Visual escuro, quente, artesanal e alinhado a marca.</li>
+          <li>Bonus: 1 ano de dominio e hospedagem incluso no pacote.</li>
+        </ul>
+      </div>
+      <div class="tag">Site</div>
+    </div>
+
+    <div class="deliverable">
+      <div class="icon">2</div>
+      <div>
+        <h3>Google Meu Negocio organizado</h3>
+        <p>Configuracao e revisao do perfil para facilitar descoberta local no Google e no Maps.</p>
+        <ul>
+          <li>Fotos, descricao, horarios, categorias e links principais.</li>
+          <li>Otimização para buscas locais como hamburgueria em Vitória da Conquista.</li>
+          <li>Sem promessa falsa de primeiro lugar: foco em melhorar presenca e organizacao.</li>
+        </ul>
+      </div>
+      <div class="tag">Google</div>
+    </div>
+
+    <div class="deliverable">
+      <div class="icon">3</div>
+      <div>
+        <h3>Linktree / pagina de links</h3>
+        <p>Uma pagina simples e bonita para colocar na bio do Instagram, levando o cliente para pedido, WhatsApp, Google Maps e avaliacoes.</p>
+      </div>
+      <div class="tag">Bio</div>
+    </div>
+
+    <div class="deliverable">
+      <div class="icon">4</div>
+      <div>
+        <h3>Capas de destaque para Instagram</h3>
+        <p>Pacote visual para deixar os destaques com cara de marca: escuro, quente, com icones e bordas em laranja/amarelo.</p>
+        <ul>
+          <li>Burgers, Cardapio, Promocoes, Combos, Delivery, Clientes e Eventos.</li>
+        </ul>
+      </div>
+      <div class="tag">Instagram</div>
+    </div>
+
+    <div class="deliverable">
+      <div class="icon">5</div>
+      <div>
+        <h3>QR Code para avaliacao no Google</h3>
+        <p>QR Code direto para avaliacao da Fire Burger no Google, pronto para imprimir e usar no balcao, mesa, embalagem ou stories.</p>
+      </div>
+      <div class="tag">Avaliacoes</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Fire Burger - Vitória da Conquista - Proposta Comercial</span>
+    <span>03</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="brand-row">
+    <div class="brand"><img src="logo%20fire%20burguer.jpeg" alt="Fire Burger">FIRE <b>BURGER</b></div>
+    <div class="partner">03 - Execucao</div>
+  </div>
+
+  <div class="section-head">
+    <div class="kicker">Como funciona</div>
+    <h2>Processo direto, sem enrolacao.</h2>
+    <p>A entrega e pensada para colocar a presenca digital da Fire Burger de pe rapidamente, com ajustes em cima da identidade visual da marca.</p>
+  </div>
+
+  <div class="flow">
+    <div class="card">
+      <div class="num">1</div>
+      <h3>Aprovacao</h3>
+      <p>Fechamento do pacote e envio das informacoes principais: links, fotos, horarios e dados de contato.</p>
+    </div>
+    <div class="card">
+      <div class="num">2</div>
+      <h3>Producao</h3>
+      <p>Montagem do site, configuracao dos links, organizacao do Google Meu Negocio e criacao das capas.</p>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <h3>Entrega final</h3>
+      <p>Publicacao, revisao no celular e desktop, entrega do QR Code e orientacao de uso.</p>
+    </div>
+  </div>
+
+  <div class="included">
+    <h3>Incluso no pacote</h3>
+    <ul>
+      <li>Site responsivo da Fire Burger</li>
+      <li>1 ano de dominio e hospedagem</li>
+      <li>CTA Pedir Agora</li>
+      <li>Link para cardapio/pedidos</li>
+      <li>Linktree ou pagina de bio</li>
+      <li>Google Meu Negocio revisado</li>
+      <li>Otimização para busca local</li>
+      <li>QR Code para avaliacao Google</li>
+      <li>Pacote de capas de destaque</li>
+      <li>Links para Instagram, Maps e WhatsApp</li>
+      <li>Identidade visual fogo/brasa</li>
+      <li>Responsividade mobile</li>
+      <li>Orientacao de uso</li>
+    </ul>
+  </div>
+
+  <div class="warn">
+    Observacao importante: otimização de Google melhora a presenca local e a organizacao do perfil, mas nenhuma empresa seria deve prometer posicao garantida no ranking.
+  </div>
+
+  <div class="footer">
+    <span>Fire Burger - Vitória da Conquista - Proposta Comercial</span>
+    <span>04</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="brand-row">
+    <div class="brand"><img src="logo%20fire%20burguer.jpeg" alt="Fire Burger">FIRE <b>BURGER</b></div>
+    <div class="partner">04 - Valor real</div>
+  </div>
+
+  <div class="section-head">
+    <div class="kicker">Antes do investimento</div>
+    <h2>Um pacote desse normalmente nao sai barato.</h2>
+    <p>
+      Se voce fosse contratar tudo separado, o valor subiria rapido: site responsivo, dominio, hospedagem, organizacao do Google, pagina de links, capas de destaque, QR Code de avaliacao e ajustes para busca local.
+    </p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="num">1</div>
+      <h3>Site profissional</h3>
+      <p>Um site com visual proprio, botoes de pedido, responsividade e secao de localizacao costuma ser cobrado como projeto separado.</p>
+    </div>
+    <div class="card">
+      <div class="num">2</div>
+      <h3>Google e avaliacoes</h3>
+      <p>Organizar Google Meu Negocio, link de avaliacao e QR Code tambem entra como servico separado em muitas agencias.</p>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <h3>Instagram e bio</h3>
+      <p>Capas de destaque, identidade visual e pagina de links deixam o perfil mais profissional e mais facil de usar.</p>
+    </div>
+    <div class="card">
+      <div class="num">4</div>
+      <h3>Presenca local</h3>
+      <p>Ajustes para busca local e organizacao dos canais ajudam a Fire Burger a ser encontrada por quem ja esta procurando comida em Vitoria da Conquista.</p>
+    </div>
+  </div>
+
+  <div class="anchor-box">
+    <h3>Valor de referencia</h3>
+    <p>Em uma entrega completa como essa, cobrando site, Google, Linktree, QR Code, capas e busca local separadamente, o valor normal ficaria facilmente nessa faixa:</p>
+
+    <div class="anchor-prices">
+      <div class="anchor-price">
+        <div class="label">Agencia</div>
+        <div class="value">R$ 5.000</div>
+      </div>
+      <div class="anchor-price">
+        <div class="label">Projeto menor</div>
+        <div class="value">R$ 4.000</div>
+      </div>
+      <div class="anchor-price">
+        <div class="label">Basico</div>
+        <div class="value">R$ 3.000</div>
+      </div>
+    </div>
+
+    <div class="anchor-call">
+      <p><strong>Mas essa proposta nao vai ser nenhuma dessas.</strong> A ideia aqui e fechar um pacote objetivo, acessivel e direto para colocar a Fire Burger mais forte no digital sem pesar no caixa.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Fire Burger - Vitória da Conquista - Proposta Comercial</span>
+    <span>05</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="brand-row">
+    <div class="brand"><img src="logo%20fire%20burguer.jpeg" alt="Fire Burger">FIRE <b>BURGER</b></div>
+    <div class="partner">05 - Investimento</div>
+  </div>
+
+  <div class="section-head">
+    <div class="kicker">Investimento</div>
+    <h2>Pacote completo por valor fechado.</h2>
+    <p>Uma entrega unica para organizar a presenca digital da Fire Burger, sem mensalidade obrigatoria.</p>
+  </div>
+
+  <div class="price-wrap">
+    <div class="price-card best">
+      <div class="badge">Melhor valor</div>
+      <div class="mode">A vista</div>
+      <div class="price">R$ 2.000</div>
+      <p class="note">Pagamento unico para iniciar o projeto e entregar o pacote completo.</p>
+    </div>
+
+    <div class="price-card">
+      <div class="mode">Parcelado</div>
+      <div class="price">3<small>x de R$ 800</small></div>
+      <p class="note">Total parcelado: R$ 2.400. Primeira parcela na aprovacao da proposta.</p>
+    </div>
+  </div>
+
+  <div class="included">
+    <h3>Por que esse pacote vale mais do que um site simples</h3>
+    <ul>
+      <li>Ajuda o cliente a pedir mais rapido</li>
+      <li>Fortalece a imagem da hamburgueria</li>
+      <li>Organiza a presenca no Google</li>
+      <li>Facilita avaliacoes positivas</li>
+      <li>Inclui dominio e hospedagem por 1 ano</li>
+      <li>Melhora a bio do Instagram</li>
+      <li>Deixa a marca mais profissional</li>
+      <li>Funciona bem no celular</li>
+      <li>Centraliza links importantes</li>
+    </ul>
+  </div>
+
+  <div class="warn">
+    Bonus incluso: primeiro ano de dominio e hospedagem do site. A renovacao apos 12 meses fica por conta da Fire Burger, caso deseje manter o site ativo.
+  </div>
+
+  <div class="footer">
+    <span>Fire Burger - Vitória da Conquista - Proposta Comercial</span>
+    <span>06</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="brand-row">
+    <div class="brand"><img src="logo%20fire%20burguer.jpeg" alt="Fire Burger">FIRE <b>BURGER</b></div>
+    <div class="partner">06 - Fechamento</div>
+  </div>
+
+  <div class="section-head">
+    <div class="kicker">Proximos passos</div>
+    <h2>Como comecamos.</h2>
+    <p>Com a aprovacao, o projeto pode comecar imediatamente. A ideia e entregar uma presenca digital mais forte, bonita e funcional para a Fire Burger.</p>
+  </div>
+
+  <div class="flow">
+    <div class="card">
+      <div class="num">1</div>
+      <h3>Aprovar</h3>
+      <p>Confirmar a proposta e a forma de pagamento.</p>
+    </div>
+    <div class="card">
+      <div class="num">2</div>
+      <h3>Enviar dados</h3>
+      <p>Enviar horarios, links, fotos, cardapio e dados de acesso quando necessario.</p>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <h3>Publicar</h3>
+      <p>Revisar, ajustar e colocar tudo em funcionamento.</p>
+    </div>
+  </div>
+
+  <div class="included">
+    <h3>Fechamento</h3>
+    <p>
+      Esta proposta foi pensada para transformar a Fire Burger em uma marca local mais facil de encontrar, mais bonita de apresentar e mais simples de pedir.
+    </p>
+    <p style="margin-top: 12px;">
+      Aprovacao por WhatsApp ja e suficiente para iniciar a organizacao do projeto.
+    </p>
+  </div>
+
+  <div class="footer">
+    <span>Proposta Fire Burger - Vitória da Conquista</span>
+    <span>07</span>
+  </div>
+</section>
+
+<div class="pdf-hint">Para salvar em PDF: <b>Ctrl + P</b> - destino: <b>Salvar como PDF</b> - margens: <b>nenhuma</b></div>
+
+</body>
+</html>
