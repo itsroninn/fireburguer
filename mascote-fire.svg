@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 330" width="260" height="330" role="img" aria-label="Mascote esponja cozinheira da Fire Burger">
+  <!-- ============================================================
+       MASCOTE FIRE BURGER — esponja cozinheira (original)
+       Loop perfeito de 2s, fundo transparente, otimizado p/ web.
+       ============================================================ -->
+  <defs>
+    <!-- sombra suave âmbar -->
+    <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#ff7a18" stop-opacity=".38"/>
+      <stop offset="100%" stop-color="#ff7a18" stop-opacity="0"/>
+    </radialGradient>
+    <!-- corpo de esponja -->
+    <linearGradient id="sponge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#ffd84a"/>
+      <stop offset="100%" stop-color="#f2b71f"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#eef1f5"/>
+      <stop offset="55%" stop-color="#c6ccd4"/>
+      <stop offset="100%" stop-color="#9aa1ab"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    /* animações suaves em loop perfeito de 2.4s (volta ao frame inicial sem pulo) */
+    .mascot   { transform-box: fill-box; transform-origin: 50% 100%;
+                animation: bob 2.4s ease-in-out infinite; }
+    .arm      { transform-box: fill-box; transform-origin: 18% 92%;
+                animation: wave 2.4s ease-in-out infinite; }
+    .face     { transform-box: fill-box; transform-origin: 50% 100%;
+                animation: tilt 2.4s ease-in-out infinite; }
+    .eyes     { transform-box: fill-box; transform-origin: 50% 50%;
+                animation: blink 2.4s ease-in-out infinite; }
+    .shadow   { transform-box: fill-box; transform-origin: 50% 50%;
+                animation: breathe 2.4s ease-in-out infinite; }
+
+    /* sobe levemente (efeito "oi") com bounce elástico/squash ao tocar embaixo */
+    @keyframes bob   { 0%,100% { transform: translateY(8px) scale(1.04,.96); }
+                       45%     { transform: translateY(-2px) scale(.98,1.02); }
+                       55%     { transform: translateY(0)   scale(1,1); } }
+    /* espátula balança p/ cima e p/ baixo */
+    @keyframes wave  { 0%,100% { transform: rotate(8deg); }
+                       50%     { transform: rotate(-11deg); } }
+    /* leve inclinação de cabeça/rosto acompanhando */
+    @keyframes tilt  { 0%,100% { transform: rotate(-2.5deg); }
+                       50%     { transform: rotate(2.5deg); } }
+    /* piscada rápida perto do fim do loop */
+    @keyframes blink { 0%,88%,100% { transform: scaleY(1); }
+                       92%         { transform: scaleY(.08); }
+                       96%         { transform: scaleY(1); } }
+    /* sombra respira junto com o pulo */
+    @keyframes breathe { 0%,100% { transform: scale(.92); opacity:.55; }
+                         50%     { transform: scale(1);  opacity:.85; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mascot,.arm,.face,.eyes,.shadow { animation: none; }
+    }
+  </style>
+
+  <!-- sombra suave âmbar no chão -->
+  <ellipse class="shadow" cx="120" cy="316" rx="86" ry="16" fill="url(#shadow)"/>
+
+  <g class="mascot" stroke="#2a1710" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- ============ BRAÇO + ESPÁTULA (balança) ============ -->
+    <g class="arm">
+      <!-- braço -->
+      <path d="M188 196 C214 188 232 150 236 116" fill="none" stroke-width="15"/>
+      <!-- mão -->
+      <circle cx="236" cy="112" r="15" fill="url(#sponge)"/>
+      <!-- espátula: cabo vermelho -->
+      <rect x="231" y="40" width="11" height="58" rx="5" fill="#c1272d"/>
+      <!-- pescoço metálico -->
+      <rect x="233.5" y="26" width="6" height="20" fill="#8a9099" stroke-width="3"/>
+      <!-- pá metálica -->
+      <rect x="210" y="2" width="54" height="30" rx="7" fill="url(#metal)"/>
+      <!-- ranhuras da pá -->
+      <line x1="222" y1="9" x2="222" y2="25" stroke="#9aa1ab" stroke-width="3"/>
+      <line x1="232" y1="9" x2="232" y2="25" stroke="#9aa1ab" stroke-width="3"/>
+      <line x1="242" y1="9" x2="242" y2="25" stroke="#9aa1ab" stroke-width="3"/>
+      <line x1="252" y1="9" x2="252" y2="25" stroke="#9aa1ab" stroke-width="3"/>
+    </g>
+
+    <!-- ============ CORPO ESPONJA ============ -->
+    <rect x="40" y="120" width="160" height="220" rx="34" fill="url(#sponge)"/>
+
+    <!-- textura de esponja (furinhos) -->
+    <g stroke="none" fill="#e0a516" opacity=".55">
+      <ellipse cx="70"  cy="250" rx="7" ry="6"/>
+      <ellipse cx="104" cy="286" rx="9" ry="7"/>
+      <ellipse cx="150" cy="258" rx="6" ry="6"/>
+      <ellipse cx="176" cy="296" rx="7" ry="6"/>
+      <ellipse cx="58"  cy="300" rx="6" ry="5"/>
+      <ellipse cx="132" cy="316" rx="8" ry="6"/>
+    </g>
+
+    <!-- avental simples do cozinheiro -->
+    <path d="M84 232 h72 a8 8 0 0 1 8 8 v92 h-88 v-92 a8 8 0 0 1 8 -8 z" fill="#f4f1ea"/>
+    <path d="M104 232 q16 18 32 0" fill="none" stroke-width="5"/>
+    <!-- bolso do avental -->
+    <rect x="100" y="278" width="40" height="30" rx="6" fill="none" stroke-width="5"/>
+
+    <!-- ============ ROSTO (inclina levemente) ============ -->
+    <g class="face">
+      <!-- sobrancelhas -->
+      <path d="M82 162 q12 -8 24 -2" fill="none" stroke-width="5"/>
+      <path d="M134 160 q12 -6 24 2" fill="none" stroke-width="5"/>
+      <!-- olhos (piscam) -->
+      <g class="eyes">
+        <circle cx="96"  cy="182" r="13" fill="#fff"/>
+        <circle cx="146" cy="182" r="13" fill="#fff"/>
+        <circle cx="99"  cy="184" r="6"  fill="#2a1710" stroke="none"/>
+        <circle cx="149" cy="184" r="6"  fill="#2a1710" stroke="none"/>
+        <circle cx="101" cy="182" r="2"  fill="#fff" stroke="none"/>
+        <circle cx="151" cy="182" r="2"  fill="#fff" stroke="none"/>
+      </g>
+      <!-- bochechas -->
+      <circle cx="74"  cy="206" r="9" fill="#ff8a4c" stroke="none" opacity=".8"/>
+      <circle cx="168" cy="206" r="9" fill="#ff8a4c" stroke="none" opacity=".8"/>
+      <!-- sorriso -->
+      <path d="M96 206 q25 28 50 0" fill="none" stroke-width="6"/>
+    </g>
+
+    <!-- ============ CHAPÉU DE COZINHEIRO ============ -->
+    <g>
+      <rect x="78" y="112" width="84" height="22" rx="8" fill="#f4f1ea"/>
+      <path d="M82 116 C66 110 64 80 86 78 C90 60 130 58 138 76
+               C160 70 174 96 158 116 Z" fill="#fff"/>
+    </g>
+
+  </g>
+</svg>

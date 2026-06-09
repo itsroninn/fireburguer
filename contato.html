@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Fire Burger · Hambúrguer Artesanal na Brasa · Candeias, Vitória da Conquista</title>
+<title>Onde Estamos · Fire Burger · Candeias, Vitória da Conquista</title>
 <meta name="description" content="Carne pesada selada na brasa, queijo escorrendo e pão tostado na manteiga. Hambúrguer artesanal, pizza e caldos em Candeias, Vitória da Conquista. Peça agora, a fome não espera." />
 <meta property="og:title" content="Fire Burger · Hambúrguer que não mata fome, acende vontade." />
 <meta property="og:description" content="Carne na brasa, queijo derretido, cada mordida soltando vapor. Candeias, Vitória da Conquista BA." />
@@ -33,7 +33,7 @@
 
 <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body class="subpage">
 <!-- ===================== SVG ICON SPRITE (custom Fire Burger) ===================== -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="ic-fire" viewBox="0 0 24 24"><path d="M13.6 1.4c.4 2.7-.9 4.2-2.3 5.7-1.5 1.6-3.2 3.2-3.2 6.1 0 .5.1 1 .2 1.5-1.1-.4-1.9-1.4-2.2-2.8-1.3 1.5-2.1 3.2-2.1 5C4 21.7 7.5 25 11.9 25c4.5 0 8-3.5 8-8 0-4.9-3.2-7.1-4.7-10.2-.7-1.4-1.2-3-1.6-4.6Zm-1.5 13.9c.4 1 1.1 1.4 1.8 2 .7.6 1.2 1.3 1.2 2.3 0 1.3-1.1 2.3-2.5 2.3-1.6 0-2.7-1.1-2.7-2.7 0-1.5 1.1-2.5 1.6-3.6.2.6.5 1.1.6 1.7Z"/></symbol>
@@ -69,139 +69,32 @@
     </div>
   </div>
 </header>
-<!-- ===================== HERO ===================== -->
-<section class="hero" id="top">
-  <div class="hero-bg">
-    <video class="hero-video hero-video--desktop" autoplay muted loop playsinline preload="none" poster="img/real04.jpg" data-src="hero-dashboard.mp4"></video>
-    <video class="hero-video hero-video--mobile" autoplay muted loop playsinline preload="none" poster="img/real04.jpg" data-src="hero-mobile.mp4"></video>
-    <div class="hero-video-overlay"></div>
-    <div class="glow g1"></div>
-    <div class="glow g2"></div>
-  </div>
+<!-- ===================== CONTATO ===================== -->
+<section class="contact sec-pad" id="contato">
+  <!-- brasas subindo no fundo (preenchidas via JS) -->
+  <div class="pratos-sparks" id="contatoSparks" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Candeias · Vitória da Conquista · BA</span>
-        <h1>
-          <span class="line"><span>HAMBÚRGUER</span></span>
-          <span class="line"><span>QUE NÃO MATA FOME,</span></span>
-          <span class="line"><span>ACENDE <em>VONTADE</em>.</span></span>
-        </h1>
-        <div class="hero-actions">
-          <span class="firewrap"><span class="flames" aria-hidden="true"></span><a href="https://fireburgerpizzascaldosegourmet.saipos.com/home" target="_blank" rel="noopener" class="btn">Pedir Agora <svg class="svgi"><use href="#ic-fire"/></svg></a></span>
-          <a href="cardapio.html" class="btn btn--ghost">Ver Cardápio</a>
-        </div>
-        <p class="lead">Pão na chapa com manteiga estalando. Carne pesada selada na brasa. Queijo escorrendo pela lateral e aquele vapor subindo a cada mordida. Você não vai só comer. Vai querer voltar antes mesmo de terminar.</p>
-        <div class="hero-meta">
-          <div class="m"><b>14K+</b><span>Seguidores</span></div>
-          <div class="m"><b>4.6<svg class="svgi star-suffix"><use href="#ic-star"/></svg></b><span>959 no Google</span></div>
-          <div class="m"><b>7 dias</b><span>Na Semana</span></div>
+    <div class="contact-grid">
+      <div>
+        <span class="eyebrow reveal">Onde a Brasa Acende</span>
+        <h2 class="reveal d1" style="font-size:clamp(2rem,4.6vw,3.2rem);margin:.3em 0 .2em">Chega mais. A brasa tá acesa.</h2>
+        <ul class="info-list">
+          <li class="reveal d1"><div class="ic"><svg class="svgi"><use href="#ic-pin"/></svg></div><div><b>Endereço</b><span>Av. Alziro Prates, 292, Candeias, Vitória da Conquista - BA, 45028-075 · <a href="https://maps.app.goo.gl/gxtk2WfLhKHki3Jt8" target="_blank" rel="noopener">abrir no Maps</a></span></div></li>
+          <li class="reveal d2"><div class="ic"><svg class="svgi"><use href="#ic-phone"/></svg></div><div><b>WhatsApp / Pedidos</b><span><a href="https://wa.me/5577999914216" target="_blank" rel="noopener">(77) 99991-4216</a></span></div></li>
+          <li class="reveal d3"><div class="ic"><svg class="svgi"><use href="#ic-camera"/></svg></div><div><b>Instagram</b><span><a href="https://www.instagram.com/fireburger.candeias/" target="_blank" rel="noopener">@fireburger.candeias</a></span></div></li>
+          <li class="reveal d4"><div class="ic"><svg class="svgi"><use href="#ic-scooter"/></svg></div><div><b>Delivery</b><span><a href="https://fireburgerpizzascaldosegourmet.saipos.com/home" target="_blank" rel="noopener">Cardápio online · Saipos</a> · iFood</span></div></li>
+        </ul>
+        <div class="hours reveal d2">
+          <h4><svg class="svgi"><use href="#ic-clock"/></svg> Horário de Funcionamento <span class="open-pill" id="openPill">Aberto agora</span></h4>
+          <div class="row"><b>Segunda a Quinta</b><span>18:00 às 23:30</span></div>
+          <div class="row"><b>Sexta e Sábado</b><span>18:00 às 00:00</span></div>
+          <div class="row"><b>Domingo</b><span>18:00 às 23:00</span></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- ===================== MARQUEE ===================== -->
-<div class="marquee">
-  <div class="marquee-track" id="mtrack">
-    <span>Queijo Derretido <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Carne na Brasa <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Pão na Manteiga <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Bacon Crocante <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Suco a Cada Mordida <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Feito na Hora <i><svg class="svgi"><use href="#ic-spark"/></svg></i></span>
-    <span>Queijo Derretido <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Carne na Brasa <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Pão na Manteiga <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Bacon Crocante <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Suco a Cada Mordida <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Feito na Hora <i><svg class="svgi"><use href="#ic-spark"/></svg></i></span>
-  </div>
-</div>
-<!-- ===================== FAIXA PRODUTOS REAIS ===================== -->
-<section class="realband">
-  <!-- carrossel de fundo (JS duplica a track p/ loop perfeito) -->
-  <div class="realband-carousel">
-    <div class="rb-track">
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c01.jpg"></div>
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c02.jpg"></div>
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c03.jpg"></div>
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c04.jpg"></div>
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c05.jpg"></div>
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c06.jpg"></div>
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c07.jpg"></div>
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c08.jpg"></div>
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c09.jpg"></div>
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c10.jpg"></div>
-      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c11.jpg"></div>
-    </div>
-  </div>
-  <div class="realband-cap">
-    <span class="eyebrow">Comida de verdade</span>
-    <h3>Aqui matamos sua <em>fome</em>.</h3>
-  </div>
-</section>
-<!-- ===================== PRATOS DA CASA ===================== -->
-<section class="pratos sec-pad" id="sobre">
-  <!-- brasas/faíscas sutis no fundo (preenchidas via JS) -->
-  <div class="pratos-sparks gallery-particles" id="pratosSparks" aria-hidden="true"></div>
-
-  <div class="wrap">
-    <div class="pratos-grid">
-
-      <!-- imagem grande à esquerda -->
-      <div class="pratos-hero reveal">
-        <img alt="Hambúrguer artesanal Fire Burger" src="img/pratos-burger.png">
+      <div class="map-wrap reveal d2">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Fire+Burger+Av.+Alziro+Prates+292+Candeias+Vit%C3%B3ria+da+Conquista+BA&output=embed"></iframe>
       </div>
-
-      <!-- conteúdo à direita -->
-      <div class="pratos-content">
-        <span class="pratos-brand reveal"><svg class="svgi"><use href="#ic-fire"/></svg> FIRE <b>BURGER</b></span>
-        <h2 class="pratos-title reveal d1">Pratos da Casa</h2>
-        <p class="pratos-sub reveal d2">Burgers autorais preparados na brasa, com sabor intenso e ingredientes selecionados.</p>
-
-        <div class="pratos-cards">
-          <!-- TROQUE AS IMAGENS dos pratos nos src= abaixo -->
-          <article class="prato-card reveal d1">
-            <div class="prato-thumb"><img loading="lazy" alt="Fire Burger Clássico" src="img/carrossel/g05.jpg"></div>
-            <div class="prato-info">
-              <h3>Fire Burger Clássico</h3>
-              <span class="prato-badge"><svg class="svgi"><use href="#ic-star"/></svg> Mais pedido</span>
-              <p>Pão brioche, blend grelhado, cheddar e bacon crocante.</p>
-            </div>
-          </article>
-
-          <article class="prato-card reveal d2">
-            <div class="prato-thumb"><img loading="lazy" alt="Smash Brasa Duplo" src="img/carrossel/g08.jpg"></div>
-            <div class="prato-info">
-              <h3>Smash Brasa Duplo</h3>
-              <span class="prato-badge"><svg class="svgi"><use href="#ic-chef"/></svg> Da casa</span>
-              <p>Dois smash burgers, queijo duplo e molho especial.</p>
-            </div>
-          </article>
-
-          <article class="prato-card reveal d3">
-            <div class="prato-thumb"><img loading="lazy" alt="Costela Fire" src="img/carrossel/g11.jpg"></div>
-            <div class="prato-info">
-              <h3>Costela Fire</h3>
-              <span class="prato-badge"><svg class="svgi"><use href="#ic-fire"/></svg> Defumado</span>
-              <p>Costela desfiada, cheddar cremoso e cebola roxa.</p>
-            </div>
-          </article>
-
-          <article class="prato-card reveal d4">
-            <!-- PLACEHOLDER: trocar por uma foto real de batata frita -->
-            <div class="prato-thumb"><img loading="lazy" alt="Batata Vulcão" src="img/carrossel2/c09.jpg"></div>
-            <div class="prato-info">
-              <h3>Batata Vulcão</h3>
-              <span class="prato-badge"><svg class="svgi"><use href="#ic-bolt"/></svg> Crocante</span>
-              <p>Batatas crocantes com cheddar cremoso e bacon.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-<!-- ===================== NÚMEROS ===================== -->
-<section class="stats sec-pad">
-  <div class="wrap">
-    <div class="stats-grid">
-      <div class="stat reveal"><div class="num" data-count="14000" data-suffix="+">0</div><div class="lbl">Apaixonados</div></div>
-      <div class="stat reveal d1"><div class="num" data-count="50" data-suffix="+">0</div><div class="lbl">Delícias no menu</div></div>
-      <div class="stat reveal d2"><div class="num" data-count="4.6" data-dec="1">0</div><div class="lbl">Nota média <svg class="svgi" style="width:.9em;height:.9em;color:var(--amber);vertical-align:-.1em"><use href="#ic-star"/></svg></div></div>
-      <div class="stat reveal d3"><div class="num" data-count="7" data-suffix=" dias">0</div><div class="lbl">Aberto na semana</div></div>
     </div>
   </div>
 </section>
@@ -255,77 +148,5 @@
 </footer>
 <a class="wa-float" href="https://wa.me/5577999914216" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="svgi"><use href="#ic-whatsapp"/></svg></a>
 <script src="js/script.js"></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Fire Burger",
-  "alternateName": ["Fire Burguer", "Fire Burger Candeias"],
-  "description": "Hambúrguer artesanal na brasa, pizza e caldos em Candeias, Vitória da Conquista BA. Carne pesada selada na brasa, queijo escorrendo e pão tostado na manteiga.",
-  "url": "https://fireburguer.com.br/",
-  "logo": "https://fireburguer.com.br/logo-fire-burger-perfil-1024.png",
-  "image": "https://fireburguer.com.br/logo-fire-burger-perfil-1024.png",
-  "telephone": "+55-77-99991-4216",
-  "priceRange": "R$",
-  "servesCuisine": ["Hambúrguer Artesanal", "Pizza", "Caldos"],
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Av. Alziro Prates, 292",
-    "addressLocality": "Candeias",
-    "addressRegion": "BA",
-    "postalCode": "45028-075",
-    "addressCountry": "BR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": -14.857,
-    "longitude": -40.838
-  },
-  "hasMap": "https://maps.app.goo.gl/gxtk2WfLhKHki3Jt8",
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-      "opens": "18:00",
-      "closes": "23:30"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Friday", "Saturday"],
-      "opens": "18:00",
-      "closes": "00:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Sunday",
-      "opens": "18:00",
-      "closes": "23:00"
-    }
-  ],
-  "sameAs": [
-    "https://www.instagram.com/fireburger.candeias/",
-    "https://fireburgerpizzascaldosegourmet.saipos.com/home"
-  ],
-  "potentialAction": {
-    "@type": "OrderAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://fireburgerpizzascaldosegourmet.saipos.com/home",
-      "inLanguage": "pt-BR",
-      "actionPlatform": [
-        "http://schema.org/DesktopWebPlatform",
-        "http://schema.org/MobileWebPlatform"
-      ]
-    },
-    "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeDirectDownload"]
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Vitória da Conquista"
-  },
-  "keywords": "hamburgueria Candeias, hamburguer artesanal Vitória da Conquista, hamburguer na brasa VCA, delivery hamburguer Candeias"
-}
-</script>
-
 </body>
 </html>
