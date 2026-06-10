@@ -2,12 +2,20 @@
 (function(){
   const mob=matchMedia('(max-width:760px)').matches;
   const v=document.querySelector(mob?'.hero-video--mobile':'.hero-video--desktop');
-  if(v&&v.dataset.src){
-    v.preload='auto';
-    const s=document.createElement('source'); s.src=v.dataset.src; s.type='video/mp4';
-    v.appendChild(s); v.load();
-    const p=v.play(); if(p&&p.catch) p.catch(()=>{});
-  }
+  if(!v||!v.dataset.src) return;
+  // iOS/Safari: muted + playsinline definidos via JS p/ permitir autoplay
+  v.muted=true; v.defaultMuted=true;
+  v.setAttribute('muted',''); v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
+  v.preload='auto';
+  const s=document.createElement('source'); s.src=v.dataset.src; s.type='video/mp4';
+  v.appendChild(s); v.load();
+  const tryPlay=()=>{ const p=v.play(); if(p&&p.catch) p.catch(()=>{}); };
+  v.addEventListener('loadeddata',tryPlay,{once:true});
+  v.addEventListener('canplay',tryPlay,{once:true});
+  // se o iOS bloquear o autoplay, toca no primeiro toque na tela
+  const onTouch=()=>{ tryPlay(); document.removeEventListener('touchstart',onTouch); };
+  document.addEventListener('touchstart',onTouch,{once:true,passive:true});
+  tryPlay();
 })();
 
 /* ============ MENU DATA (cardápio completo do Saipos) ============ */
