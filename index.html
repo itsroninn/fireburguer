@@ -28,6 +28,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png" />
 <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png" />
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<link rel="preload" as="image" href="img/hero-poster.jpg" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet" />
@@ -57,7 +59,7 @@
 <!-- ===================== NAV ===================== -->
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="brand"><img class="brand-logo" src="logo%20fire%20burguer.jpeg" alt="Fire Burger" />FIRE<b>BURGER</b></a>
+    <a href="index.html" class="brand"><img class="brand-logo" src="logo%20fire%20burguer.jpeg" alt="Fire Burger" width="42" height="42" decoding="async" />FIRE<b>BURGER</b></a>
     <nav class="nav-links" id="navLinks">
       <a href="index.html#sobre">A Brasa</a>
       <a href="cardapio.html">Cardápio</a>
@@ -142,7 +144,7 @@
 
       <!-- imagem grande à esquerda -->
       <div class="pratos-hero reveal">
-        <img alt="Hambúrguer artesanal Fire Burger" src="img/pratos-burger.png">
+        <img alt="Hambúrguer artesanal Fire Burger" src="img/pratos-burger.webp" width="850" height="937" loading="lazy" decoding="async">
       </div>
 
       <!-- conteúdo à direita -->
@@ -223,7 +225,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="index.html" class="brand"><img class="brand-logo" src="logo%20fire%20burguer.jpeg" alt="Fire Burger" />FIRE<b>BURGER</b></a>
+        <a href="index.html" class="brand"><img class="brand-logo" src="logo%20fire%20burguer.jpeg" alt="Fire Burger" width="42" height="42" loading="lazy" decoding="async" />FIRE<b>BURGER</b></a>
         <p>Carne pesada na brasa, queijo derretido e fome de gente feliz. Hambúrguer artesanal, pizza e caldos em Candeias, Vitória da Conquista, BA.</p>
         <div class="foot-soc">
           <a href="https://www.instagram.com/fireburger.candeias/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="svgi"><use href="#ic-instagram"/></svg></a>

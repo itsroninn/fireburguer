@@ -3,19 +3,28 @@
   const mob=matchMedia('(max-width:760px)').matches;
   const v=document.querySelector(mob?'.hero-video--mobile':'.hero-video--desktop');
   if(!v||!v.dataset.src) return;
-  // iOS/Safari: muted + playsinline definidos via JS p/ permitir autoplay
-  v.muted=true; v.defaultMuted=true;
-  v.setAttribute('muted',''); v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
-  v.preload='auto';
-  const s=document.createElement('source'); s.src=v.dataset.src; s.type='video/mp4';
-  v.appendChild(s); v.load();
-  const tryPlay=()=>{ const p=v.play(); if(p&&p.catch) p.catch(()=>{}); };
-  v.addEventListener('loadeddata',tryPlay,{once:true});
-  v.addEventListener('canplay',tryPlay,{once:true});
-  // se o iOS bloquear o autoplay, toca no primeiro toque na tela
-  const onTouch=()=>{ tryPlay(); document.removeEventListener('touchstart',onTouch); };
-  document.addEventListener('touchstart',onTouch,{once:true,passive:true});
-  tryPlay();
+  const loadVideo=()=>{
+    if(v.dataset.loaded) return;
+    v.dataset.loaded='true';
+    // iOS/Safari: muted + playsinline definidos via JS p/ permitir autoplay
+    v.muted=true; v.defaultMuted=true;
+    v.setAttribute('muted',''); v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
+    v.preload='metadata';
+    const s=document.createElement('source'); s.src=v.dataset.src; s.type='video/mp4';
+    v.appendChild(s); v.load();
+    const tryPlay=()=>{ const p=v.play(); if(p&&p.catch) p.catch(()=>{}); };
+    v.addEventListener('loadeddata',tryPlay,{once:true});
+    v.addEventListener('canplay',tryPlay,{once:true});
+    // se o iOS bloquear o autoplay, toca no primeiro toque na tela
+    const onTouch=()=>{ tryPlay(); document.removeEventListener('touchstart',onTouch); };
+    document.addEventListener('touchstart',onTouch,{once:true,passive:true});
+    tryPlay();
+  };
+  const schedule=()=>('requestIdleCallback' in window)
+    ? requestIdleCallback(loadVideo,{timeout:1800})
+    : setTimeout(loadVideo,900);
+  if(document.readyState==='complete') schedule();
+  else addEventListener('load',schedule,{once:true});
 })();
 
 /* ============ MENU DATA (cardápio completo do Saipos) ============ */
@@ -148,18 +157,18 @@ const MENU=[
   {cat:"bebidas",name:"Maracujá com leite (Poupa)",desc:"400ml",price:"20,00",fire:0,tag:"",img:"img/cardapio/bebidas-29-maracuja-com-leite-poupa.webp"},
   {cat:"bebidas",name:"Limonada (Fruta)",desc:"400ml",price:"15,00",fire:0,tag:"",img:"img/cardapio/bebidas-30-limonada-fruta.webp"},
   {cat:"bebidas",name:"Limoda Suíça (Fruta)",desc:"400ml",price:"22,00",fire:0,tag:"",img:"img/cardapio/bebidas-31-limoda-suica-fruta.webp"},
-  {cat:"cervejas-long-neck",name:"Heineken 0,0",desc:"",price:"14,00",fire:0,tag:"",img:"img/about-combo-fire.png"},
-  {cat:"cervejas-long-neck",name:"Heineken",desc:"",price:"14,00",fire:0,tag:"",img:"img/about-combo-fire.png"},
-  {cat:"cervejas-long-neck",name:"Budweiser",desc:"",price:"12,00",fire:0,tag:"",img:"img/about-combo-fire.png"},
-  {cat:"cervejas-long-neck",name:"Stella Artois",desc:"",price:"12,00",fire:0,tag:"",img:"img/about-combo-fire.png"},
-  {cat:"cervejas-long-neck",name:"Corona Extra",desc:"",price:"14,00",fire:0,tag:"",img:"img/about-combo-fire.png"},
-  {cat:"cervejas-long-neck",name:"Eisenbahn",desc:"",price:"12,00",fire:0,tag:"",img:"img/about-combo-fire.png"},
+  {cat:"cervejas-long-neck",name:"Heineken 0,0",desc:"",price:"14,00",fire:0,tag:"",img:"img/about-combo-fire.webp"},
+  {cat:"cervejas-long-neck",name:"Heineken",desc:"",price:"14,00",fire:0,tag:"",img:"img/about-combo-fire.webp"},
+  {cat:"cervejas-long-neck",name:"Budweiser",desc:"",price:"12,00",fire:0,tag:"",img:"img/about-combo-fire.webp"},
+  {cat:"cervejas-long-neck",name:"Stella Artois",desc:"",price:"12,00",fire:0,tag:"",img:"img/about-combo-fire.webp"},
+  {cat:"cervejas-long-neck",name:"Corona Extra",desc:"",price:"14,00",fire:0,tag:"",img:"img/about-combo-fire.webp"},
+  {cat:"cervejas-long-neck",name:"Eisenbahn",desc:"",price:"12,00",fire:0,tag:"",img:"img/about-combo-fire.webp"},
   {cat:"milk-shakes",name:"Milk Shake Morango",desc:"400ml",price:"30,00",fire:0,tag:"",img:"img/cardapio/milk-shakes-01-milk-shake-morango.webp"},
   {cat:"milk-shakes",name:"Milk Shake Oreo",desc:"400ml",price:"30,00",fire:0,tag:"",img:"img/cardapio/milk-shakes-02-milk-shake-oreo.webp"},
   {cat:"milk-shakes",name:"Milk Shake Coco",desc:"400ml",price:"30,00",fire:0,tag:"",img:"img/cardapio/milk-shakes-03-milk-shake-coco.webp"},
   {cat:"milk-shakes",name:"Milk Shake Ovomaltine",desc:"400ml",price:"30,00",fire:0,tag:"",img:"img/cardapio/milk-shakes-04-milk-shake-ovomaltine.webp"},
   {cat:"milk-shakes",name:"Milk Shake Chocolate",desc:"400ml",price:"30,00",fire:0,tag:"",img:"img/cardapio/milk-shakes-05-milk-shake-chocolate.webp"},
-  {cat:"acais",name:"Açai com banana e morango 400ml",desc:"",price:"50,00",fire:0,tag:"",img:"img/about-combo-fire.png"}
+  {cat:"acais",name:"Açai com banana e morango 400ml",desc:"",price:"50,00",fire:0,tag:"",img:"img/about-combo-fire.webp"}
 ];
 const CAT_LABELS={"burguers-artesanais":"Burguers artesanais","sanduiches-tradicional":"Sanduíches tradicional","pratos-gourmet":"Pratos Gourmet","gregos":"Gregos","pasteis":"Pastéis","tapiocas":"Tapiocas","petiscos":"Petiscos","batata-frita-insana":"Batata frita insana","wrap-s":"Wrap's","porcoes":"Porções","mingau-500ml":"Mingau 500ml","saladas":"Saladas","bebidas":"Bebidas","cervejas-long-neck":"Cervejas Long Neck","milk-shakes":"Milk shakes","acais":"Açaís"};
 const CAT_ORDER=["burguers-artesanais","sanduiches-tradicional","pratos-gourmet","gregos","pasteis","tapiocas","petiscos","batata-frita-insana","wrap-s","porcoes","mingau-500ml","saladas","bebidas","cervejas-long-neck","milk-shakes","acais"];
