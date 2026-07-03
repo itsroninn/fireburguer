@@ -86,6 +86,21 @@ h1,h2,h3{font-family:"Bricolage Grotesque","Sora",sans-serif;font-weight:800;lin
 .btn--ghost{color:var(--cream);background:transparent;border:1.5px solid var(--line)}
 .btn--ghost::before,.btn--ghost::after{display:none}
 .btn--ghost:hover{border-color:var(--flame);background:rgba(255,138,23,.07)}
+/* destaque: brilho âmbar pulsante p/ chamar atenção */
+.btn--destaque{border-color:rgba(255,170,60,.9);color:var(--cream);
+  background:rgba(255,138,23,.10);animation:btnDestaque 2s ease-in-out infinite}
+@keyframes btnDestaque{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,138,23,.45),0 0 14px rgba(255,90,20,.25)}
+  50%    {box-shadow:0 0 0 6px rgba(255,138,23,0),0 0 26px rgba(255,90,20,.55)}}
+.btn--destaque:hover{border-color:var(--amber);background:rgba(255,138,23,.16);
+  box-shadow:0 0 24px rgba(255,138,23,.6)}
+/* brilho diagonal cruzando o botão */
+.btn.btn--destaque::after{display:block;content:"";position:absolute;top:0;left:-70%;width:55%;height:100%;z-index:1;
+  pointer-events:none;transform:skewX(-20deg);
+  background:linear-gradient(110deg,transparent,rgba(255,225,160,.55),transparent);
+  animation:btnShine 3.2s ease-in-out infinite}
+@keyframes btnShine{0%{left:-70%}55%,100%{left:150%}}
+@media(prefers-reduced-motion:reduce){.btn--destaque,.btn.btn--destaque::after{animation:none}.btn.btn--destaque::after{display:none}}
 
 /* ---------- botão pegando fogo (acende no hover) ---------- */
 .firewrap{position:relative;display:inline-flex;isolation:isolate}

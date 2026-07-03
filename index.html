@@ -25,8 +25,11 @@
 <meta name="geo.position" content="-14.857;-40.838" />
 <meta name="ICBM" content="-14.857, -40.838" />
 <link rel="canonical" href="https://fireburguer.com.br/" />
-<link rel="icon" type="image/jpeg" href="logo%20fire%20burguer.jpeg" />
-<link rel="apple-touch-icon" href="logo%20fire%20burguer.jpeg" />
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png" />
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<link rel="preload" as="image" href="img/hero-poster.jpg" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet" />
@@ -56,7 +59,7 @@
 <!-- ===================== NAV ===================== -->
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="brand"><img class="brand-logo" src="logo%20fire%20burguer.jpeg" alt="Fire Burger" />FIRE<b>BURGER</b></a>
+    <a href="index.html" class="brand"><img class="brand-logo" src="logo%20fire%20burguer.jpeg" alt="Fire Burger" width="42" height="42" decoding="async" />FIRE<b>BURGER</b></a>
     <nav class="nav-links" id="navLinks">
       <a href="index.html#sobre">A Brasa</a>
       <a href="cardapio.html">Cardápio</a>
@@ -72,8 +75,8 @@
 <!-- ===================== HERO ===================== -->
 <section class="hero" id="top">
   <div class="hero-bg">
-    <video class="hero-video hero-video--desktop" autoplay muted loop playsinline preload="none" poster="img/real04.jpg" data-src="hero-dashboard.mp4"></video>
-    <video class="hero-video hero-video--mobile" autoplay muted loop playsinline preload="none" poster="img/real04.jpg" data-src="hero-mobile.mp4"></video>
+    <video class="hero-video hero-video--desktop" autoplay muted loop playsinline preload="none" poster="img/hero-poster.jpg" data-src="hero-dashboard.mp4"></video>
+    <video class="hero-video hero-video--mobile" autoplay muted loop playsinline preload="none" poster="img/hero-poster.jpg" data-src="hero-mobile.mp4"></video>
     <div class="hero-video-overlay"></div>
     <div class="glow g1"></div>
     <div class="glow g2"></div>
@@ -89,7 +92,7 @@
         </h1>
         <div class="hero-actions">
           <span class="firewrap"><span class="flames" aria-hidden="true"></span><a href="https://fireburgerpizzascaldosegourmet.saipos.com/home" target="_blank" rel="noopener" class="btn">Pedir Agora <svg class="svgi"><use href="#ic-fire"/></svg></a></span>
-          <a href="cardapio.html" class="btn btn--ghost">Ver Cardápio</a>
+          <a href="cardapio.html" class="btn btn--ghost btn--destaque">Ver Cardápio</a>
         </div>
         <p class="lead">Pão na chapa com manteiga estalando. Carne pesada selada na brasa. Queijo escorrendo pela lateral e aquele vapor subindo a cada mordida. Você não vai só comer. Vai querer voltar antes mesmo de terminar.</p>
         <div class="hero-meta">
@@ -141,7 +144,7 @@
 
       <!-- imagem grande à esquerda -->
       <div class="pratos-hero reveal">
-        <img alt="Hambúrguer artesanal Fire Burger" src="img/pratos-burger.png">
+        <img alt="Hambúrguer artesanal Fire Burger" src="img/pratos-burger.webp" width="850" height="937" loading="lazy" decoding="async">
       </div>
 
       <!-- conteúdo à direita -->
@@ -153,39 +156,38 @@
         <div class="pratos-cards">
           <!-- TROQUE AS IMAGENS dos pratos nos src= abaixo -->
           <article class="prato-card reveal d1">
-            <div class="prato-thumb"><img loading="lazy" alt="Fire Burger Clássico" src="img/carrossel/g05.jpg"></div>
+            <div class="prato-thumb"><img loading="lazy" alt="Hambúrguer Rochedo" src="img/cardapio/burguers-artesanais-08-rochedo.jpeg"></div>
             <div class="prato-info">
-              <h3>Fire Burger Clássico</h3>
+              <h3>Rochedo</h3>
               <span class="prato-badge"><svg class="svgi"><use href="#ic-star"/></svg> Mais pedido</span>
-              <p>Pão brioche, blend grelhado, cheddar e bacon crocante.</p>
+              <p>Pão francês, blend de fraldinha e suíno, bacon, cheddar e salada.</p>
             </div>
           </article>
 
           <article class="prato-card reveal d2">
-            <div class="prato-thumb"><img loading="lazy" alt="Smash Brasa Duplo" src="img/carrossel/g08.jpg"></div>
+            <div class="prato-thumb"><img loading="lazy" alt="Hambúrguer Helena" src="img/cardapio/burguers-artesanais-15-helena.webp"></div>
             <div class="prato-info">
-              <h3>Smash Brasa Duplo</h3>
+              <h3>Helena</h3>
               <span class="prato-badge"><svg class="svgi"><use href="#ic-chef"/></svg> Da casa</span>
-              <p>Dois smash burgers, queijo duplo e molho especial.</p>
+              <p>Blends de costela, cupim e calabresa, muito bacon, mussarela e cheddar.</p>
             </div>
           </article>
 
           <article class="prato-card reveal d3">
-            <div class="prato-thumb"><img loading="lazy" alt="Costela Fire" src="img/carrossel/g11.jpg"></div>
+            <div class="prato-thumb"><img loading="lazy" alt="Camarão Alfredo" src="img/cardapio/pratos-gourmet-06-camarao-alfredo.jpeg"></div>
             <div class="prato-info">
-              <h3>Costela Fire</h3>
-              <span class="prato-badge"><svg class="svgi"><use href="#ic-fire"/></svg> Defumado</span>
-              <p>Costela desfiada, cheddar cremoso e cebola roxa.</p>
+              <h3>Camarão Alfredo</h3>
+              <span class="prato-badge"><svg class="svgi"><use href="#ic-spark"/></svg> Gourmet</span>
+              <p>Camarão grelhado sobre fettuccine ao molho Alfredo e bacon.</p>
             </div>
           </article>
 
           <article class="prato-card reveal d4">
-            <!-- PLACEHOLDER: trocar por uma foto real de batata frita -->
-            <div class="prato-thumb"><img loading="lazy" alt="Batata Vulcão" src="img/carrossel2/c09.jpg"></div>
+            <div class="prato-thumb"><img loading="lazy" alt="Batata frita insana" src="img/cardapio/batata-frita-insana-01-batata-com-cheddar-e-bacon.webp"></div>
             <div class="prato-info">
-              <h3>Batata Vulcão</h3>
+              <h3>Batata Frita Insana</h3>
               <span class="prato-badge"><svg class="svgi"><use href="#ic-bolt"/></svg> Crocante</span>
-              <p>Batatas crocantes com cheddar cremoso e bacon.</p>
+              <p>Batata crocante com cheddar cremoso e bacon.</p>
             </div>
           </article>
         </div>
@@ -223,7 +225,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="index.html" class="brand"><img class="brand-logo" src="logo%20fire%20burguer.jpeg" alt="Fire Burger" />FIRE<b>BURGER</b></a>
+        <a href="index.html" class="brand"><img class="brand-logo" src="logo%20fire%20burguer.jpeg" alt="Fire Burger" width="42" height="42" loading="lazy" decoding="async" />FIRE<b>BURGER</b></a>
         <p>Carne pesada na brasa, queijo derretido e fome de gente feliz. Hambúrguer artesanal, pizza e caldos em Candeias, Vitória da Conquista, BA.</p>
         <div class="foot-soc">
           <a href="https://www.instagram.com/fireburger.candeias/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="svgi"><use href="#ic-instagram"/></svg></a>
