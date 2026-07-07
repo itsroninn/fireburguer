@@ -399,10 +399,12 @@ tick();
 
 /* ============ OPEN/CLOSED PILL ============ */
 (function(){
-  const h=new Date().getHours();
   const pill=document.getElementById('openPill');
   if(!pill)return;
-  const open=h>=18||h<1; // 18h–01h
+  const now=new Date(), day=now.getDay(), t=now.getHours()*60+now.getMinutes();
+  const lunch=(day>=1&&day<=5)&&t>=690&&t<=870;   // Almoço seg–sex 11:30–14:30
+  const dinner=t>=1020;                            // Hamburgueria todos os dias 17:00–00:00
+  const open=lunch||dinner;
   pill.textContent=open?"Aberto agora":"Fechado";
   if(!open){pill.style.background="#ff6b6b";pill.style.color="#3d0a0a";}
 })();
