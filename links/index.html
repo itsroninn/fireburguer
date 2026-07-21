@@ -39,7 +39,7 @@
   "telephone":"+5577999914216",
   "sameAs":["https://www.instagram.com/fireburger.candeias/"],
   "address":{"@type":"PostalAddress","streetAddress":"Av. Alziro Prates, 292","addressLocality":"Candeias, Vitória da Conquista","addressRegion":"BA","addressCountry":"BR"},
-  "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"18:00","closes":"23:00"},
+  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"11:30","closes":"14:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"17:00","closes":"00:00"}],
   "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"959"}
 }
 </script>
@@ -237,7 +237,7 @@ body{font-family:'Sora',system-ui,sans-serif;color:var(--cream);background:#0503
 
     <div class="badge" id="badge">
       <span class="dot" aria-hidden="true"></span>
-      <span class="status">Aberto hoje</span><span class="sep">•</span><span id="hours">18h às 23h</span>
+      <span class="status">Aberto hoje</span><span class="sep">•</span><span id="hours">17h às 00h</span>
     </div>
 
     <div class="links">
@@ -296,26 +296,30 @@ body{font-family:'Sora',system-ui,sans-serif;color:var(--cream);background:#0503
   </main>
 
   <script>
-    /* Selo aberto/fechado dinâmico (18h–23h, todos os dias) */
+    /* Selo aberto/fechado dinâmico
+       Almoço: seg–sex 11:30–14:30  |  Hamburgueria: todos os dias 17:00–00:00 */
     (function(){
-      var OPEN=18, CLOSE=23;
       var badge=document.getElementById('badge'),
           status=badge&&badge.querySelector('.status'),
           hours=document.getElementById('hours');
       if(!badge||!status||!hours) return;
       function update(){
-        var now=new Date(), h=now.getHours()+now.getMinutes()/60;
-        var isOpen=h>=OPEN && h<CLOSE;
+        var now=new Date(), day=now.getDay(), t=now.getHours()*60+now.getMinutes();
+        var weekday=day>=1&&day<=5;
+        var isLunch=weekday && t>=690 && t<870;   // 11:30–14:30
+        var isDinner=t>=1020;                      // 17:00–00:00
+        var isOpen=isLunch||isDinner;
         if(isOpen){
           badge.classList.remove('is-closed');
           status.textContent='Aberto agora';
-          hours.textContent='fecha às '+CLOSE+'h';
+          hours.textContent='fecha às '+(isLunch?'14h30':'00h');
         }else{
           badge.classList.add('is-closed');
           status.textContent='Fechado';
-          hours.textContent='abre às '+OPEN+'h';
+          var next=(weekday && t<690)?'11h30':'17h';
+          hours.textContent='abre às '+next;
         }
-        badge.setAttribute('aria-label', (isOpen?'Aberto agora, ':'Fechado, ')+'horário de funcionamento das '+OPEN+'h às '+CLOSE+'h');
+        badge.setAttribute('aria-label', (isOpen?'Aberto agora':'Fechado')+' — almoço seg a sex 11h30 às 14h30, hamburgueria todos os dias 17h às 00h');
       }
       update(); setInterval(update, 60000);
     })();
