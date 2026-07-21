@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fire Burger · Hambúrguer Artesanal na Brasa · Candeias, Vitória da Conquista</title>
+<meta name="description" content="Carne pesada selada na brasa, queijo escorrendo e pão tostado na manteiga. Hambúrguer artesanal, pizza e caldos em Candeias, Vitória da Conquista. Peça agora, a fome não espera." />
+<meta property="og:title" content="Fire Burger · Hambúrguer que não mata fome, acende vontade." />
+<meta property="og:description" content="Carne na brasa, queijo derretido, cada mordida soltando vapor. Candeias, Vitória da Conquista BA." />
+<meta property="og:type" content="restaurant" />
+<meta property="og:url" content="https://fireburguer.com.br/" />
+<meta property="og:image" content="https://fireburguer.com.br/logo-fire-burger-perfil-1024.png" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="1024" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:site_name" content="Fire Burger" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Fire Burger · Hambúrguer Artesanal na Brasa · Candeias, VCA" />
+<meta name="twitter:description" content="Carne na brasa, queijo derretido, delivery em Candeias, Vitória da Conquista BA. Peça agora." />
+<meta name="twitter:image" content="https://fireburguer.com.br/logo-fire-burger-perfil-1024.png" />
+<meta name="robots" content="index, follow" />
+<meta name="keywords" content="hamburgueria Candeias, hamburguer artesanal Vitória da Conquista, hamburguer na brasa VCA, hamburgueria delivery Candeias BA, lanche Candeias, hamburguer artesanal Candeias, Fire Burger, pizza Candeias, caldo Candeias, hamburgueria VCA" />
+<meta name="geo.region" content="BR-BA" />
+<meta name="geo.placename" content="Candeias, Vitória da Conquista" />
+<meta name="geo.position" content="-14.857;-40.838" />
+<meta name="ICBM" content="-14.857, -40.838" />
+<link rel="canonical" href="https://fireburguer.com.br/" />
+<link rel="icon" type="image/jpeg" href="logo%20fire%20burguer.jpeg" />
+<link rel="apple-touch-icon" href="logo%20fire%20burguer.jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   FIRE BURGER — single-file premium presentation site
+   Paleta: carvão + brasa (ember red → orange → amber)
+   Trocar fotos/preços/horários reais do cliente onde marcado.
+   ============================================================ */
+
+:root{
+  --char-900:#0a0705;       /* carvão profundo */
+  --char-800:#120c08;
+  --char-700:#1b120c;
+  --char-600:#241710;
+  --ember:#ff3d10;          /* brasa */
+  --ember-hot:#ff5a1f;
+  --flame:#ff8a17;          /* chama */
+  --amber:#ffb627;          /* âmbar */
+  --gold:#ffd27a;
+  --cream:#fbe9d6;
+  --smoke:#b9a392;
+  --line:rgba(255,138,23,.16);
+  --glow:0 0 60px rgba(255,61,16,.45);
+  --maxw:1240px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--char-900);
+  color:var(--cream);
+  font-family:"Sora",system-ui,sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--ember);color:#fff}
+
+/* ---------- SVG icon system (custom Fire Burger) ---------- */
+.svgi{width:1em;height:1em;display:inline-block;vertical-align:-.14em;fill:currentColor;flex:none}
+.brand .fl .svgi{width:19px;height:19px;color:#180a04}
+.btn .svgi{width:1.1em;height:1.1em;margin-left:.1em}
+.hero-badge .ic .svgi{width:20px;height:20px}
+.marquee i .svgi{width:.62em;height:.62em;color:var(--ember);vertical-align:-.05em}
+.pillar .ic{color:var(--flame)}
+.pillar .ic .svgi{width:1.5rem;height:1.5rem}
+.info-list .ic{color:var(--flame)}
+.info-list .ic .svgi{width:1.25rem;height:1.25rem}
+.hours h4 .svgi{width:1.1em;height:1.1em;color:var(--flame);vertical-align:-.18em}
+.card-fire .svgi{width:13px;height:13px;color:var(--flame)}
+.foot-soc a .svgi{width:18px;height:18px}
+.wa-float .svgi{width:27px;height:27px}
+.star-suffix{width:.7em;height:.7em;color:var(--amber);margin-left:.08em;vertical-align:.02em}
+.foot-bot .svgi{width:1em;height:1em;color:var(--ember);vertical-align:-.14em}
+
+/* ---------- grain + atmosfera global ---------- */
+body::before{
+  content:"";position:fixed;inset:0;z-index:9990;pointer-events:none;
+  opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.vignette{position:fixed;inset:0;z-index:9989;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 0%,transparent 40%,rgba(0,0,0,.55) 100%);}
+
+/* embers canvas */
+#embers{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+/* ---------- layout helpers ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:2}
+section{position:relative;z-index:2}
+.eyebrow{font-family:"Sora";font-weight:700;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--flame);display:inline-flex;align-items:center;gap:.7em}
+.eyebrow::before{content:"";width:30px;height:1px;background:linear-gradient(90deg,var(--ember),transparent)}
+h1,h2,h3{font-family:"Bricolage Grotesque","Sora",sans-serif;font-weight:800;line-height:1.02;letter-spacing:-.02em}
+.display{font-family:"Anton",sans-serif;font-weight:400;letter-spacing:.01em;text-transform:uppercase;line-height:.86}
+
+.btn{position:relative;display:inline-flex;align-items:center;gap:.6em;font-family:"Sora";font-weight:700;
+  font-size:.92rem;letter-spacing:.02em;padding:1.05em 1.9em;border-radius:100px;border:none;cursor:pointer;
+  text-decoration:none;color:#180a04;overflow:hidden;isolation:isolate;transition:transform .4s var(--ease),box-shadow .4s}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(120deg,var(--amber),var(--ember-hot) 60%,var(--ember));transition:transform .5s var(--ease)}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;transform:translateX(-101%);
+  background:linear-gradient(120deg,var(--gold),var(--flame));transition:transform .5s var(--ease)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(255,61,16,.7)}
+.btn:hover::after{transform:translateX(0)}
+.btn--ghost{color:var(--cream);background:transparent;border:1.5px solid var(--line)}
+.btn--ghost::before,.btn--ghost::after{display:none}
+.btn--ghost:hover{border-color:var(--flame);background:rgba(255,138,23,.07)}
+
+/* ---------- botão pegando fogo (acende no hover) ---------- */
+.firewrap{position:relative;display:inline-flex;isolation:isolate}
+.firewrap .flames{position:absolute;left:3%;right:3%;bottom:-14px;height:62px;z-index:-1;pointer-events:none;
+  transform-origin:bottom center;transform:translateY(12px) scaleY(.3);opacity:0;
+  transition:opacity .22s ease,transform .35s var(--ease);
+  filter:blur(6px) contrast(1.15);
+  background:
+    radial-gradient(closest-side at 10% 100%,#ffe680,#ff7a00 50%,transparent 70%),
+    radial-gradient(closest-side at 26% 100%,#ffc233,#ff3d10 50%,transparent 72%),
+    radial-gradient(closest-side at 42% 100%,#ffe680,#ff7a00 50%,transparent 70%),
+    radial-gradient(closest-side at 58% 100%,#ffc233,#ff3d10 50%,transparent 72%),
+    radial-gradient(closest-side at 74% 100%,#ffe680,#ff8a17 50%,transparent 70%),
+    radial-gradient(closest-side at 90% 100%,#ffd24d,#ff5a1f 50%,transparent 72%);
+  background-size:20% 100%,22% 132%,18% 116%,22% 132%,18% 112%,20% 126%;
+  background-repeat:no-repeat;
+  background-position:10% 100%,26% 100%,42% 100%,58% 100%,74% 100%,90% 100%;}
+.firewrap:hover .flames,.firewrap:focus-within .flames,.firewrap--hot .flames{opacity:1;transform:translateY(0) scaleY(1);
+  animation:flicker .5s ease-in-out infinite alternate}
+@keyframes flicker{
+  0%{background-position:10% 100%,26% 86%,42% 104%,58% 84%,74% 96%,90% 90%;filter:blur(6px) brightness(1)}
+  50%{background-position:12% 60%,24% 48%,44% 72%,56% 46%,72% 58%,88% 52%;filter:blur(8px) brightness(1.38)}
+  100%{background-position:9% 82%,27% 62%,41% 90%,59% 58%,75% 76%,91% 68%;filter:blur(6px) brightness(1.14)}}
+.firewrap .btn{transition:transform .4s var(--ease),box-shadow .4s,filter .35s}
+.firewrap:hover .btn,.firewrap--hot .btn{filter:brightness(1.06);box-shadow:0 -3px 24px rgba(255,90,20,.55),0 12px 38px -8px rgba(255,80,20,.85)}
+.firewrap::after{content:"";position:absolute;left:8%;right:8%;bottom:-10px;height:22px;z-index:-2;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,90,20,.8),transparent 70%);filter:blur(7px);opacity:0;transition:opacity .3s}
+.firewrap:hover::after,.firewrap--hot::after{opacity:1;animation:emberpulse 1.4s ease-in-out infinite}
+@keyframes emberpulse{50%{opacity:.5;transform:scaleX(1.14)}}
+@media(prefers-reduced-motion:reduce){.firewrap .flames,.firewrap::after{animation:none;transition:opacity .2s}}
+
+/* ============================================================ NAV */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:9000;transition:.4s var(--ease)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:22px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav.menu-open{background:rgba(10,7,5,.94);border-bottom:1px solid var(--line)}
+.nav.scrolled{backdrop-filter:blur(14px);background:rgba(10,7,5,.72);border-bottom:1px solid var(--line)}
+.nav.scrolled .nav-inner{padding:14px 28px}
+.brand{display:flex;align-items:center;gap:.55em;font-family:"Anton";font-size:1.5rem;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--cream);text-decoration:none}
+.brand .fl{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:radial-gradient(circle at 50% 35%,var(--amber),var(--ember) 70%);box-shadow:var(--glow);font-size:1rem}
+.brand-logo{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none;
+  box-shadow:0 0 0 1.5px rgba(255,138,23,.5),0 0 26px rgba(255,61,16,.5);transition:transform .5s var(--ease),box-shadow .5s}
+.brand:hover .brand-logo{transform:rotate(-8deg) scale(1.06);box-shadow:0 0 0 1.5px var(--amber),0 0 36px rgba(255,90,31,.75)}
+.brand b{color:var(--flame)}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{color:var(--smoke);text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.02em;position:relative;transition:color .3s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--ember);transition:width .35s var(--ease)}
+.nav-links a:hover{color:var(--cream)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.burger-ico{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.burger-ico span{width:26px;height:2px;background:var(--cream);transition:.3s}
+@media(max-width:920px){
+  body.menu-open{overflow:hidden}
+  .nav-inner{position:relative;z-index:9002}
+  .nav-links{position:fixed;top:0;left:0;width:100vw;height:100dvh;min-height:100svh;
+    flex-direction:column;justify-content:center;align-items:center;padding:96px 28px 40px;
+    background:
+      radial-gradient(circle at 16% 12%,rgba(255,61,16,.28),transparent 32%),
+      radial-gradient(circle at 84% 92%,rgba(255,138,23,.18),transparent 34%),
+      linear-gradient(180deg,rgba(10,7,5,.99),rgba(18,10,5,.98));
+    backdrop-filter:blur(14px);gap:26px;z-index:9001;transform:translateY(-105%);opacity:0;visibility:hidden;
+    pointer-events:none;transition:transform .5s var(--ease),opacity .3s ease,visibility 0s linear .5s}
+  .nav-links.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto;transition:transform .5s var(--ease),opacity .3s ease}
+  .nav-links a{width:min(320px,86vw);padding:14px 18px;border:1px solid rgba(255,138,23,.16);border-radius:12px;
+    background:rgba(255,138,23,.035);text-align:center;font-size:1.35rem;font-family:"Bricolage Grotesque";color:var(--cream)}
+  .nav-links a::after{display:none}
+  .nav-links a:hover{background:rgba(255,138,23,.1);border-color:rgba(255,138,23,.38)}
+  .burger-ico{display:flex;z-index:9001}
+  .burger-ico.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger-ico.open span:nth-child(2){opacity:0}
+  .burger-ico.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav .desk-cta{display:none}
+}
+
+/* ============================================================ HERO */
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:120px;padding-bottom:60px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-video--mobile{display:none}
+@media(max-width:760px){.hero-video--desktop{display:none}.hero-video--mobile{display:block}}
+.hero-video-overlay{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(10,6,4,.94) 0%,rgba(10,6,4,.82) 38%,rgba(10,6,4,.45) 68%,rgba(10,6,4,.6) 100%),
+  linear-gradient(0deg,rgba(10,6,4,.8) 0%,transparent 35%,transparent 70%,rgba(10,6,4,.55) 100%)}
+.hero-bg .glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55}
+.hero-bg .g1{width:60vw;height:60vw;left:-15vw;top:-10vw;background:radial-gradient(circle,var(--ember),transparent 65%)}
+.hero-bg .g2{width:50vw;height:50vw;right:-12vw;bottom:-18vw;background:radial-gradient(circle,var(--flame),transparent 60%);opacity:.4}
+.hero>.wrap{width:100%;max-width:none;padding-left:clamp(24px,7vw,130px);padding-right:24px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center;width:100%}
+.hero-copy{position:relative;z-index:3;min-width:0;max-width:640px}
+.hero h1{max-width:640px;font-size:clamp(2.4rem,6.6vw,5.65rem);margin:.18em 0 .34em}
+.hero h1 .line{display:block;overflow:hidden;padding-right:.12em;margin-right:-.12em}
+.hero h1 .line>span{display:block;transform:translateY(110%);transition:transform 1s var(--ease)}
+.hero h1 .line:first-child>span{font-size:.88em}
+.hero h1 em{font-style:normal;color:transparent;background:linear-gradient(100deg,var(--amber),var(--ember-hot) 55%,var(--ember));
+  -webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 4px 30px rgba(255,61,16,.45))}
+.hero p.lead{max-width:46ch;color:var(--smoke);font-size:1.08rem;margin-top:1.6em;margin-bottom:0}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.hero-meta{display:flex;gap:30px;margin-top:2.6em;flex-wrap:wrap}
+.hero-meta .m{display:flex;flex-direction:column}
+.hero-meta .m b{font-family:"Anton";font-size:1.7rem;color:var(--cream);letter-spacing:.02em}
+.hero-meta .m span{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--flame)}
+
+/* hero visual */
+.hero-visual{position:absolute;z-index:2;top:0;right:max(4vw,20px);height:100%;width:clamp(300px,30vw,460px);pointer-events:none}
+.disc{position:absolute;inset:6%;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--ember),var(--flame),var(--amber),var(--flame),var(--ember));
+  filter:blur(2px);opacity:.9;animation:spin 18s linear infinite;mask:radial-gradient(circle,transparent 56%,#000 57%)}
+.disc.d2{inset:0;opacity:.35;animation-duration:34s;animation-direction:reverse;mask:radial-gradient(circle,transparent 62%,#000 63%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-photo{position:relative;display:block;width:92%;aspect-ratio:1/1;border-radius:50%;object-fit:cover;background:#180a04;
+  box-shadow:0 40px 90px -20px rgba(255,61,16,.55),inset 0 0 0 6px rgba(255,138,23,.18);
+  animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-16px)}}
+.hero-badge{position:absolute;z-index:4;background:rgba(18,12,8,.82);backdrop-filter:blur(8px);
+  border:1px solid var(--line);border-radius:16px;padding:12px 16px;display:flex;align-items:center;gap:10px;
+  box-shadow:0 14px 30px -10px rgba(0,0,0,.6)}
+.hero-badge .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:1.05rem;
+  background:linear-gradient(135deg,var(--ember),var(--amber));color:#180a04}
+.hero-badge b{font-size:.95rem;color:var(--cream)}
+.hero-badge small{display:block;color:var(--smoke);font-size:.7rem;letter-spacing:.05em}
+.hb-1{top:7%;left:7%;animation:floaty 5s ease-in-out infinite}
+.hb-2{bottom:11%;right:0;animation:floaty 7s ease-in-out infinite .6s}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:5;
+  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--smoke);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-cue .bar{width:1px;height:42px;background:linear-gradient(var(--flame),transparent);animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
+@media(min-width:921px){
+  .hero{padding-top:120px}
+  .hero-grid{grid-template-columns:1fr;gap:52px}
+  .hero-visual{width:clamp(360px,30vw,460px)}
+  .hb-1{left:7%;top:10%}.hb-2{right:0;bottom:12%}
+}
+@media(min-width:921px) and (max-width:1280px){
+  .hero-copy{max-width:600px}
+  .hero h1{max-width:600px;font-size:clamp(3.35rem,4.75vw,4.55rem)}
+  .hero-visual{width:clamp(300px,26vw,400px)}
+  .hero-badge{max-width:280px}
+}
+@media(min-width:1700px){
+  .hero-copy{max-width:720px}
+  .hero h1{max-width:720px;font-size:clamp(4.2rem,5.3vw,6.5rem)}
+  .hero-visual{width:clamp(460px,30vw,560px)}
+}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;gap:10px}.hero-visual{display:none}}
+
+/* ============================================================ MARQUEE */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--char-800);
+  padding:20px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:3}
+.marquee-track{display:inline-flex;gap:0;animation:slide 28s linear infinite reverse}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{font-family:"Anton";font-size:1.5rem;text-transform:uppercase;letter-spacing:.04em;color:var(--cream);padding:0 28px;display:inline-flex;align-items:center;gap:28px}
+.marquee span i{color:var(--ember);font-style:normal}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ============================================================ FAIXA PRODUTOS REAIS */
+.realband{position:relative;overflow:hidden;border-bottom:1px solid var(--line);z-index:3;background:#0a0705;
+  height:clamp(180px,26vw,320px)}
+/* carrossel de fundo (linha única, contínuo) */
+.realband-carousel{position:absolute;inset:0;overflow:hidden;z-index:0}
+.rb-track{display:flex;height:100%;width:max-content;will-change:transform;animation:scrollLeft 60s linear infinite}
+.realband:hover .rb-track{animation-play-state:paused}
+.rb-item{flex:0 0 auto;height:100%;width:clamp(220px,24vw,320px)}
+.rb-item img{width:100%;height:100%;object-fit:cover;display:block}
+.realband-cap{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:.4em;padding:0 6vw;
+  background:linear-gradient(90deg,rgba(10,7,5,.94),rgba(10,7,5,.55) 48%,rgba(10,7,5,.12) 78%)}
+.realband-cap h3{font-family:"Bricolage Grotesque";font-size:clamp(1.5rem,3.6vw,2.6rem);line-height:1}
+.realband-cap h3 em{font-style:normal;color:var(--flame)}
+@media(max-width:560px){.realband-cap{background:linear-gradient(rgba(10,7,5,.6),rgba(10,7,5,.6))}}
+@media(prefers-reduced-motion:reduce){.rb-track{animation:none}}
+
+/* ============================================================ generic section head */
+.shead{max-width:760px;margin-bottom:60px}
+.shead h2{font-size:clamp(2.2rem,5.2vw,4rem);margin:.3em 0 .4em}
+.shead p{color:var(--smoke);font-size:1.05rem}
+.sec-pad{padding:120px 0}
+
+/* ============================================================ SOBRE */
+.about{position:relative;overflow:hidden}
+/* formas curvas decorativas no fundo (cinza + laranja) */
+.about-shapes{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.about-shapes::before{content:"";position:absolute;width:64vw;height:64vw;right:-20vw;top:-24vw;
+  border-radius:46% 54% 52% 48%/52% 46% 54% 48%;
+  background:radial-gradient(circle at 42% 42%,rgba(255,106,26,.22),rgba(255,106,26,0) 64%);filter:blur(12px)}
+.about-shapes::after{content:"";position:absolute;width:56vw;height:56vw;left:-22vw;bottom:-26vw;
+  border-radius:50% 50% 48% 52%/52% 48% 52% 48%;
+  background:radial-gradient(circle,rgba(156,162,171,.16),rgba(156,162,171,0) 64%);filter:blur(10px)}
+.about-curves{position:absolute;inset:0;width:100%;height:100%}
+.about-curves .cv-gray{fill:#9aa0a8;opacity:.07}
+.about-curves .cv-orange{fill:#ff6a1a;opacity:.10}
+.about-curves .cv-line{fill:none;stroke:#ff8a17;stroke-width:3;opacity:.22;stroke-linecap:round}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-photos{position:relative;aspect-ratio:1/1;isolation:isolate}
+.about-photos::before{content:"";position:absolute;inset:7%;border-radius:20px;
+  background:
+    linear-gradient(135deg,rgba(255,138,23,.12),transparent 36%,rgba(255,61,16,.12)),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 1px,transparent 1px 10px),
+    var(--char-700);
+  border:1px solid rgba(255,138,23,.18);box-shadow:0 34px 80px -32px rgba(255,61,16,.75);z-index:-2}
+.about-photos::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,61,16,.28),transparent 62%);filter:blur(28px);z-index:-3}
+.about-photos img{position:absolute;object-fit:cover;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.about-photos .p1{width:78%;height:78%;top:8%;left:7%;border-radius:18px;border:1px solid rgba(255,138,23,.28);
+  object-position:68% 50%;filter:saturate(1.06) contrast(1.04)}
+.about-photos .p2{width:40%;height:40%;right:-1%;bottom:3%;border-radius:18px;border:4px solid var(--char-900);
+  background:var(--char-900);box-shadow:0 0 0 1px rgba(255,182,39,.5),0 28px 56px -18px rgba(255,61,16,.85);
+  transform:rotate(-1.5deg)}
+.about-photos .tag{position:absolute;top:14%;right:2%;background:rgba(18,12,8,.88);border:1px solid rgba(255,138,23,.28);
+  backdrop-filter:blur(10px);border-radius:14px;padding:13px 17px;z-index:3;box-shadow:0 18px 42px -22px rgba(255,61,16,.85)}
+.about-photos .tag b{font-family:"Anton";font-size:2rem;color:var(--flame);display:block;line-height:1}
+.about-photos .tag span{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--smoke)}
+.about-copy h2{font-size:clamp(2rem,4.6vw,3.4rem);margin:.3em 0 .5em}
+.about-copy p{color:var(--smoke);margin-bottom:1.2em}
+.about-copy strong{color:var(--cream)}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.pillar{border:1px solid var(--line);border-radius:14px;padding:18px 16px;background:rgba(255,138,23,.03);transition:.4s var(--ease)}
+.pillar:hover{transform:translateY(-6px);border-color:var(--flame);background:rgba(255,138,23,.07)}
+.pillar .ic{font-size:1.5rem;margin-bottom:8px}
+.pillar b{display:block;font-size:.95rem;color:var(--cream)}
+.pillar span{font-size:.8rem;color:var(--smoke)}
+@media(max-width:880px){.about-grid{grid-template-columns:1fr;gap:80px}}
+
+/* ============================================================ PRATOS DA CASA */
+.pratos{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 8% 30%,#1b1109 0%,#0a0705 55%,#070504 100%);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pratos-sparks{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+/* brasas subindo no fundo */
+.pratos-sparks .ember{position:absolute;bottom:-12px;border-radius:50%;will-change:transform,opacity;
+  animation:emberRise linear infinite}
+@keyframes emberRise{
+  0%{transform:translate(0,0) scale(1);opacity:0}
+  10%{opacity:.95}
+  78%{opacity:.7}
+  100%{transform:translate(var(--drift,0),calc(var(--rise,420px)*-1)) scale(.25);opacity:0}}
+@media(prefers-reduced-motion:reduce){.pratos-sparks .ember{animation:none;opacity:.5}}
+.pratos::before{content:"";position:absolute;left:-8%;bottom:-20%;width:62%;height:90%;z-index:0;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,90,20,.26),transparent 72%);filter:blur(22px)}
+.pratos::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:0;pointer-events:none;
+  background:linear-gradient(0deg,rgba(255,80,16,.16),transparent)}
+.pratos .wrap{position:relative;z-index:2}
+.pratos-grid{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.18fr);gap:48px;align-items:center}
+
+/* imagem grande à esquerda */
+.pratos-hero{position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,148,32,.25);
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 0 40px rgba(255,90,20,.12);min-height:520px}
+.pratos-hero img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.pratos-hero::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(8,5,4,.55),transparent 45%),linear-gradient(90deg,rgba(255,90,20,.10),transparent 40%)}
+
+/* coluna de conteúdo */
+.pratos-brand{display:inline-flex;align-items:center;gap:10px;font-family:"Anton";letter-spacing:.18em;
+  text-transform:uppercase;font-size:1rem;color:var(--cream)}
+.pratos-brand b{color:var(--flame);font-weight:400}
+.pratos-brand .svgi{width:1.3em;height:1.3em;color:var(--ember)}
+.pratos-title{font-family:"Anton";text-transform:uppercase;letter-spacing:.02em;line-height:.95;
+  font-size:clamp(2.6rem,5.4vw,4.6rem);margin:.18em 0 .25em;
+  background:linear-gradient(180deg,#fff 0%,#d7d9dd 45%,#9aa0a8 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 1px rgba(0,0,0,.5))}
+.pratos-sub{color:var(--smoke);max-width:48ch;font-size:1.04rem;margin-bottom:30px}
+
+/* grade 2x2 de cards */
+.pratos-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.prato-card{display:flex;gap:14px;padding:14px;border-radius:16px;
+  border:1px solid rgba(255,148,32,.32);background:rgba(18,12,8,.55);backdrop-filter:blur(4px);
+  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.prato-card:hover{transform:translateY(-5px);border-color:rgba(255,173,58,.85);
+  box-shadow:0 22px 44px -16px rgba(0,0,0,.8),0 0 26px rgba(255,126,24,.28)}
+.prato-thumb{flex:0 0 92px;width:92px;height:92px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.prato-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.prato-info{min-width:0;display:flex;flex-direction:column;gap:7px}
+.prato-info h3{font-size:1.05rem;line-height:1.15;color:var(--cream)}
+.prato-badge{align-self:flex-start;display:inline-flex;align-items:center;gap:5px;
+  font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--amber);border:1px solid rgba(255,148,32,.5);border-radius:100px;padding:3px 9px;
+  background:rgba(255,138,23,.08)}
+.prato-badge .svgi{width:.85em;height:.85em}
+.prato-info p{font-size:.82rem;color:var(--smoke);line-height:1.35}
+
+@media(max-width:1100px){.pratos-grid{grid-template-columns:1fr;gap:34px}
+  .pratos-hero{min-height:340px}}
+@media(max-width:620px){.pratos-cards{grid-template-columns:1fr}
+  .pratos-hero{min-height:260px}}
+@media(max-width:380px){.prato-card{flex-direction:column}.prato-thumb{width:100%;height:120px;flex-basis:auto}}
+
+/* ============================================================ CARDÁPIO */
+.menu{background:var(--char-800);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.menu-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px}
+.filter{font-family:"Sora";font-weight:600;font-size:.86rem;letter-spacing:.02em;color:var(--smoke);
+  border:1px solid var(--line);background:transparent;border-radius:100px;padding:.65em 1.3em;cursor:pointer;transition:.3s}
+.filter.active,.filter:hover{color:#180a04;background:linear-gradient(120deg,var(--amber),var(--ember-hot));border-color:transparent}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--char-700);
+  transition:transform .5s var(--ease),box-shadow .5s,border-color .5s;will-change:transform}
+.card:hover{transform:translateY(-10px);border-color:rgba(255,138,23,.4);box-shadow:0 30px 60px -22px rgba(255,61,16,.5)}
+.card-img{position:relative;aspect-ratio:4/3;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.card:hover .card-img img{transform:scale(1.08)}
+.card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(10,7,5,.85))}
+.card-fire{position:absolute;top:12px;left:12px;z-index:2;display:flex;gap:3px;background:rgba(10,7,5,.6);
+  backdrop-filter:blur(6px);padding:5px 9px;border-radius:100px;font-size:.7rem}
+.card-tag{position:absolute;top:12px;right:12px;z-index:2;background:linear-gradient(120deg,var(--ember),var(--amber));
+  color:#180a04;font-weight:700;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:100px}
+.card-body{padding:20px 22px 24px}
+.card-body h3{font-size:1.18rem;margin-bottom:6px}
+.card-body p{font-size:.86rem;color:var(--smoke);min-height:2.6em;margin-bottom:16px}
+.card-foot{display:flex;align-items:center;justify-content:space-between}
+.price{font-family:"Anton";font-size:1.5rem;color:var(--flame);letter-spacing:.02em}
+.price small{font-size:.7rem;color:var(--smoke);font-family:"Sora";margin-right:3px}
+.card-add{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  background:linear-gradient(135deg,var(--ember),var(--amber));color:#180a04;border:none;font-size:1.3rem;
+  transition:.35s var(--ease)}
+.card-add:hover{transform:rotate(90deg) scale(1.08)}
+@media(max-width:980px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.menu-grid{grid-template-columns:1fr}}
+
+/* ============================================================ MONTAGEM / ingredientes */
+.build{overflow:hidden}
+.build-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+.stack{position:relative;aspect-ratio:1/1;display:grid;place-items:center}
+.stack .ring{position:absolute;inset:0;border-radius:50%;border:1px dashed var(--line);animation:spin 40s linear infinite}
+.stack .ring.r2{inset:12%;animation-duration:26s;animation-direction:reverse;border-color:rgba(255,61,16,.18)}
+.stack-photo{width:78%;border-radius:24px;object-fit:cover;aspect-ratio:1/1;
+  box-shadow:0 40px 80px -24px rgba(255,61,16,.55)}
+.layers{list-style:none}
+.layers li{display:flex;align-items:flex-start;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);
+  opacity:0;transform:translateX(30px);transition:.7s var(--ease)}
+.layers li.in{opacity:1;transform:none}
+.layers .n{font-family:"Anton";font-size:1.2rem;color:var(--char-900);background:linear-gradient(135deg,var(--amber),var(--ember));
+  min-width:42px;height:42px;border-radius:12px;display:grid;place-items:center}
+.layers b{display:block;font-size:1.05rem;color:var(--cream)}
+.layers span{font-size:.88rem;color:var(--smoke)}
+@media(max-width:880px){.build-grid{grid-template-columns:1fr;gap:50px}}
+
+/* ============================================================ NÚMEROS */
+.stats{background:linear-gradient(180deg,var(--char-900),var(--char-700));border-top:1px solid var(--line)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat .num{font-family:"Anton";font-size:clamp(2.6rem,6vw,4.4rem);line-height:1;
+  color:transparent;background:linear-gradient(120deg,var(--gold),var(--ember));-webkit-background-clip:text;background-clip:text}
+.stat .lbl{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--smoke);margin-top:8px}
+@media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}}
+
+/* ============================================================ GALERIA / CARROSSEL INFINITO */
+.gallery-sec{position:relative;background:#000;overflow:hidden}            /* fundo preto absoluto */
+/* partículas/luzes douradas e laranja no fundo (geradas via JS) */
+.gallery-particles{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.gallery-particles .spark{position:absolute;border-radius:50%;
+  filter:blur(.3px);opacity:.65;animation:sparkTwinkle 4s ease-in-out infinite}
+@keyframes sparkTwinkle{0%,100%{opacity:.15;transform:translateY(0) scale(.8)}50%{opacity:.85;transform:translateY(-8px) scale(1.15)}}
+
+/* área do carrossel — full-bleed, com fade nas laterais */
+.carousel{--card:214px;--gap:18px;position:relative;z-index:2;display:flex;flex-direction:column;gap:var(--gap);width:100%;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.carousel-row{display:flex;overflow:hidden}
+.carousel-track{display:flex;gap:var(--gap);width:max-content;flex:0 0 auto;will-change:transform}
+/* linha 1 e linha 2 — direita -> esquerda, velocidades levemente diferentes */
+.carousel-row--1 .carousel-track{animation:scrollLeft 46s linear infinite}
+.carousel-row--2 .carousel-track{animation:scrollLeft 38s linear infinite}
+@keyframes scrollLeft{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+/* pausa ao passar o mouse */
+.carousel:hover .carousel-track{animation-play-state:paused}
+/* cards */
+.ccard{flex:0 0 auto;width:var(--card);height:var(--card);border-radius:18px;overflow:hidden;
+  border:1px solid rgba(255,170,60,.45);                                   /* borda dourada/âmbar */
+  box-shadow:0 14px 34px -16px rgba(0,0,0,.85),inset 0 0 0 1px rgba(255,138,23,.08);
+  background:#120c08;transition:transform .4s var(--ease),border-color .4s,box-shadow .4s}
+.ccard img{width:100%;height:100%;object-fit:cover;display:block}
+.ccard:hover{transform:translateY(-6px) scale(1.03);border-color:var(--amber);
+  box-shadow:0 26px 50px -18px rgba(255,90,31,.55)}
+@media(max-width:760px){.carousel{--card:150px;--gap:12px}}
+@media(max-width:460px){.carousel{--card:124px;--gap:10px}}
+@media(prefers-reduced-motion:reduce){.carousel-track{animation:none}}
+
+/* ============================================================ EFEITO 3D PREMIUM (reutilizável) */
+/* Classe base: profundidade + transição fluida. Aplique .premium-3d + uma variante. */
+.premium-3d{position:relative;transform-style:preserve-3d;
+  transition:transform .26s var(--ease),box-shadow .26s ease,border-color .26s ease}
+
+/* Reflexo de luz diagonal (só nos cards/selos — botões já usam ::before p/ o preenchimento) */
+.premium-3d--card::before,.premium-3d--selo::before{content:"";position:absolute;inset:0;border-radius:inherit;
+  pointer-events:none;z-index:3;opacity:0;transition:opacity .26s ease;
+  background:linear-gradient(135deg,rgba(255,214,126,.22),transparent 38%,rgba(255,95,24,.10))}
+.premium-3d--card:hover::before,.premium-3d--card:focus-visible::before,
+.premium-3d--selo:hover::before,.premium-3d--selo:focus-visible::before{opacity:1}
+
+/* Borda iluminada: luz âmbar/laranja percorrendo o contorno (acende no hover) */
+@property --bd-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+.premium-3d--card::after,.premium-3d--selo::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  padding:1.4px;z-index:4;pointer-events:none;opacity:0;transition:opacity .3s ease;
+  background:conic-gradient(from var(--bd-angle),
+    transparent 0deg,rgba(255,90,20,.15) 40deg,var(--amber) 90deg,#ffe6aa 120deg,
+    var(--ember-hot) 150deg,transparent 210deg,transparent 360deg);
+  /* recorta só a faixa da borda */
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+          mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude}
+.premium-3d--card:hover::after,.premium-3d--card:focus-visible::after,
+.premium-3d--selo:hover::after,.premium-3d--selo:focus-visible::after{opacity:1;animation:bdSpin 3.6s linear infinite}
+@keyframes bdSpin{to{--bd-angle:360deg}}
+
+/* ---- Variante CARDS de imagem (.card do menu e .ccard do carrossel) ---- */
+.premium-3d--card{border:1px solid rgba(255,148,32,.30);
+  box-shadow:0 18px 35px rgba(0,0,0,.6),0 0 18px rgba(255,112,24,.10),inset 0 1px 0 rgba(255,211,128,.12)}
+.premium-3d--card:hover,.premium-3d--card:focus-visible{border-color:rgba(255,173,58,.85);
+  box-shadow:0 28px 55px -10px rgba(0,0,0,.78),0 0 34px rgba(255,126,24,.30),inset 0 1px 0 rgba(255,230,170,.32)}
+/* elevação 3D (usada quando NÃO há tilt por JS; com tilt o JS assume via inline style) */
+.premium-3d--card:hover{transform:perspective(900px) rotateX(4deg) rotateY(-6deg) translateY(-8px) scale(1.02)}
+.premium-3d--card:active{transform:translateY(-2px) scale(.995)}
+
+/* ---- Variante SELO/bloco pequeno (.pillar) ---- */
+.premium-3d--selo{border:1px solid rgba(255,148,32,.32);
+  box-shadow:0 14px 30px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,211,128,.14)}
+.premium-3d--selo:hover,.premium-3d--selo:focus-visible{border-color:rgba(255,173,58,.85);
+  box-shadow:0 22px 44px -12px rgba(0,0,0,.7),0 0 26px rgba(255,126,24,.26),inset 0 1px 0 rgba(255,230,170,.3)}
+.premium-3d--selo:hover{transform:perspective(800px) rotateX(5deg) rotateY(-5deg) translateY(-6px) scale(1.02)}
+.premium-3d--selo:active{transform:translateY(-1px) scale(.997)}
+
+/* ---- Variante BOTÃO (.btn) — sem ::before próprio p/ não conflitar com o preenchimento ---- */
+.premium-3d--btn{border:1px solid rgba(255,148,32,.40)}
+.premium-3d--btn:hover{transform:translateY(-5px) scale(1.015);
+  box-shadow:0 22px 46px -12px rgba(255,61,16,.75),0 0 26px rgba(255,126,24,.30)}
+.premium-3d--btn:active{transform:translateY(1px) scale(.985)}
+.premium-3d--btn:focus-visible{outline:2px solid rgba(255,173,58,.65);outline-offset:3px}
+
+/* Tilt por JS: enquanto segue o mouse, sombra/realce ficam ativos mesmo sem :hover */
+.premium-3d[data-tilt]{cursor:pointer}
+
+/* Acessibilidade: respeitar movimento reduzido */
+@media(prefers-reduced-motion:reduce){
+  .premium-3d,.premium-3d--card,.premium-3d--selo,.premium-3d--btn{transition:box-shadow .2s ease,border-color .2s ease}
+  .premium-3d--card:hover,.premium-3d--selo:hover,.premium-3d--btn:hover,
+  .premium-3d--card:active,.premium-3d--selo:active,.premium-3d--btn:active{transform:none}
+  .premium-3d--card:hover::after,.premium-3d--selo:hover::after{animation:none}
+}
+
+/* ============================================================ LOCAL / CONTATO */
+.contact{background:var(--char-800);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:stretch}
+.info-list{list-style:none;margin:34px 0}
+.info-list li{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.info-list .ic{width:46px;height:46px;border-radius:12px;flex:none;display:grid;place-items:center;font-size:1.2rem;
+  background:rgba(255,138,23,.08);border:1px solid var(--line)}
+.info-list b{display:block;color:var(--cream);font-size:1rem}
+.info-list span{color:var(--smoke);font-size:.9rem}
+.info-list a{color:var(--flame);text-decoration:none}
+.hours{margin-top:24px;border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(255,138,23,.03)}
+.hours h4{font-family:"Bricolage Grotesque";font-size:1rem;margin-bottom:14px;color:var(--cream);display:flex;align-items:center;gap:8px}
+.hours .row{display:flex;justify-content:space-between;font-size:.9rem;padding:7px 0;color:var(--smoke)}
+.hours .row b{color:var(--cream);font-weight:600}
+.hours .open-pill{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#0a3d10;background:#7CFF8E;
+  padding:3px 10px;border-radius:100px;font-weight:700}
+.map-wrap{border-radius:18px;overflow:hidden;border:1px solid var(--line);min-height:420px;position:relative;filter:grayscale(.2) contrast(1.05)}
+.map-wrap iframe{width:100%;height:100%;min-height:420px;border:0;filter:invert(.92) hue-rotate(180deg) saturate(.8)}
+@media(max-width:880px){.contact-grid{grid-template-columns:1fr;gap:40px}}
+
+/* ============================================================ CTA FINAL */
+.cta-final{position:relative;text-align:center;padding:140px 0;overflow:hidden}
+.cta-final .glow{position:absolute;width:70vw;height:70vw;left:50%;top:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(255,61,16,.4),transparent 60%);filter:blur(70px);z-index:0}
+.cta-final h2{position:relative;z-index:2;font-size:clamp(2.6rem,8vw,6rem);line-height:.95}
+.cta-final h2 em{font-style:normal;color:transparent;background:linear-gradient(100deg,var(--amber),var(--ember));-webkit-background-clip:text;background-clip:text}
+.cta-final p{position:relative;z-index:2;color:var(--smoke);max-width:50ch;margin:1.4em auto 2.4em;font-size:1.1rem}
+.cta-final .hero-actions{justify-content:center;position:relative;z-index:2}
+
+/* ============================================================ FOOTER */
+footer{position:relative;overflow:hidden;background:var(--char-900);border-top:1px solid var(--line);padding:70px 0 36px}
+/* mascote surgindo do canto inferior esquerdo */
+.foot-mascot{position:absolute;left:clamp(6px,2vw,40px);bottom:0;z-index:1;
+  width:clamp(104px,12vw,156px);height:auto;pointer-events:none;
+  filter:drop-shadow(0 8px 24px rgba(255,90,20,.28))}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.foot-brand .brand{margin-bottom:18px}
+.foot-brand p{color:var(--smoke);font-size:.92rem;max-width:34ch}
+.foot-soc{display:flex;gap:12px;margin-top:20px}
+.foot-soc a{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;
+  color:var(--cream);text-decoration:none;transition:.35s var(--ease)}
+.foot-soc a:hover{background:linear-gradient(135deg,var(--ember),var(--amber));color:#180a04;transform:translateY(-4px)}
+.foot-col h5{font-family:"Bricolage Grotesque";font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--flame);margin-bottom:18px}
+.foot-col a{display:block;color:var(--smoke);text-decoration:none;font-size:.92rem;padding:6px 0;transition:.3s}
+.foot-col a:hover{color:var(--cream);padding-left:6px}
+.foot-bot{position:relative;z-index:2;border-top:1px solid var(--line);padding-top:26px;padding-left:170px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--smoke);font-size:.82rem}
+.foot-bot a{color:var(--flame);text-decoration:none}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:34px}
+  footer{padding-bottom:118px}
+  .foot-bot{padding-left:0;justify-content:center;text-align:center}
+  .foot-mascot{width:98px;opacity:.92}}
+
+/* ---------- floating whatsapp ---------- */
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:8000;width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,#25D366,#128C7E);display:grid;place-items:center;color:#fff;font-size:1.7rem;
+  text-decoration:none;box-shadow:0 14px 30px -8px rgba(37,211,102,.6);transition:.4s var(--ease);cursor:pointer}
+.wa-float:hover{transform:scale(1.1) rotate(8deg)}
+.wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+
+/* ---------- reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}.reveal.d6{transition-delay:.48s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* ============================================================ MOBILE TUNING */
+@media(max-width:760px){
+  .sec-pad{padding:92px 0}
+  .shead{margin-bottom:44px}
+  .hero-actions{width:100%}
+  .firewrap{flex:1 1 auto}
+  .hero-actions .btn{width:100%;justify-content:center}
+}
+@media(max-width:560px){
+  :root{--maxw:100%}
+  .wrap{padding:0 18px}
+  .nav-inner{padding:16px 18px}
+  .nav.scrolled .nav-inner{padding:11px 18px}
+  .brand{font-size:1.25rem}
+  .brand-logo{width:36px;height:36px}
+  .sec-pad{padding:76px 0}
+  .hero{padding-top:100px;min-height:auto}
+  .hero h1{font-size:clamp(2.5rem,11vw,3.6rem);margin:.12em 0 .45em}
+  .hero p.lead{font-size:1rem}
+  .hero-meta{gap:18px 26px;margin-top:2em}
+  .hero-meta .m b{font-size:1.4rem}
+  .hero-visual{max-width:360px}
+  .hb-1,.hb-2{padding:9px 12px}
+  .hero-badge .ic{width:30px;height:30px}
+  .hero-badge b{font-size:.85rem}
+  .hero-badge small{font-size:.62rem}
+  .marquee{padding:15px 0}
+  .marquee span{font-size:1.15rem;padding:0 18px;gap:18px}
+  .shead h2{font-size:clamp(2rem,8.5vw,2.6rem)}
+  .shead p{font-size:.96rem}
+  .about-grid{gap:56px}
+  .about-photos{aspect-ratio:1/1;max-width:360px;margin:0 auto}
+  .about-photos .tag{top:auto;right:14px;bottom:18px;padding:10px 13px;border-radius:12px}
+  .about-photos .tag b{font-size:1.55rem}
+  .about-photos .tag span{font-size:.6rem;letter-spacing:.12em}
+  .about-photos .p2{width:34%;height:34%;right:0;bottom:0}
+  .pillars{grid-template-columns:1fr 1fr;gap:12px}
+  .pillar{padding:15px 13px}
+  .menu-grid{gap:18px}
+  .menu-filters{gap:8px;margin-bottom:34px}
+  .filter{font-size:.8rem;padding:.55em 1.05em}
+  .card-body{padding:17px 18px 20px}
+  .build-grid{gap:42px}
+  .stack{max-width:340px;margin:0 auto}
+  .stats-grid{gap:38px 18px}
+  .contact-grid{gap:34px}
+  .map-wrap,.map-wrap iframe{min-height:320px}
+  .hours{padding:18px}
+  .cta-final{padding:90px 0}
+  .cta-final p{font-size:1rem}
+  .foot-grid{gap:30px}
+  .foot-bot{flex-direction:column;gap:10px;text-align:center}
+  .wa-float{width:54px;height:54px;right:16px;bottom:16px;font-size:1.5rem}
+  .wa-float .svgi{width:24px;height:24px}
+  .firewrap .flames{top:-18px;height:30px}
+}
+@media(max-width:380px){
+  .hero h1{font-size:9.4vw}
+  .pillars{grid-template-columns:1fr}
+  .hero-meta{gap:14px 20px}
+  .hero-meta .m b{font-size:1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== SVG ICON SPRITE (custom Fire Burger) ===================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ic-fire" viewBox="0 0 24 24"><path d="M13.6 1.4c.4 2.7-.9 4.2-2.3 5.7-1.5 1.6-3.2 3.2-3.2 6.1 0 .5.1 1 .2 1.5-1.1-.4-1.9-1.4-2.2-2.8-1.3 1.5-2.1 3.2-2.1 5C4 21.7 7.5 25 11.9 25c4.5 0 8-3.5 8-8 0-4.9-3.2-7.1-4.7-10.2-.7-1.4-1.2-3-1.6-4.6Zm-1.5 13.9c.4 1 1.1 1.4 1.8 2 .7.6 1.2 1.3 1.2 2.3 0 1.3-1.1 2.3-2.5 2.3-1.6 0-2.7-1.1-2.7-2.7 0-1.5 1.1-2.5 1.6-3.6.2.6.5 1.1.6 1.7Z"/></symbol>
+  <symbol id="ic-bolt" viewBox="0 0 24 24"><path d="M13.4 1.5 4 14.2c-.3.4 0 1 .5 1H10l-1.4 7.1c-.1.7.8 1.1 1.2.5L20 9.8c.3-.4 0-1-.5-1H14l1.6-6.8c.2-.7-.7-1.1-1.2-.5Z"/></symbol>
+  <symbol id="ic-spark" viewBox="0 0 24 24"><path d="M12 1.5c.7 5 1.8 6.3 6.8 7-5 .7-6.1 2-6.8 7-.7-5-1.8-6.3-6.8-7 5-.7 6.1-2 6.8-7Z"/></symbol>
+  <symbol id="ic-meat" viewBox="0 0 24 24"><path d="M3.4 12.8c-.7-3.7 2.4-7.6 7.1-8.7 5.6-1.3 10.4 1.4 11.2 5.6.6 3.3-1.7 6.2-5 7.2.2.9-.2 1.9-1.1 2.5-1.4.9-3.2.5-4.1-.8-.2-.3-.3-.6-.4-.9-3.6.1-7-2-7.7-4.9Zm12.9-1.6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></symbol>
+  <symbol id="ic-chef" viewBox="0 0 24 24"><path d="M6 17.5h12v2A1.5 1.5 0 0 1 16.5 21h-9A1.5 1.5 0 0 1 6 19.5v-2Zm6-14c2.3 0 4.3 1.5 5 3.6 1.9.2 3.4 1.8 3.4 3.8 0 1.6-1 3-2.4 3.6H6c-1.4-.6-2.4-2-2.4-3.6 0-2 1.5-3.6 3.4-3.8C7.7 5 9.7 3.5 12 3.5Z"/></symbol>
+  <symbol id="ic-pin" viewBox="0 0 24 24"><path d="M12 2C8 2 4.8 5.2 4.8 9.2c0 5.1 6.3 12.2 6.6 12.5.3.4.9.4 1.2 0 .3-.3 6.6-7.4 6.6-12.5C19.2 5.2 16 2 12 2Zm0 9.7a2.6 2.6 0 1 1 0-5.2 2.6 2.6 0 0 1 0 5.2Z"/></symbol>
+  <symbol id="ic-phone" viewBox="0 0 24 24"><path d="M7.5 3H4.2c-.7 0-1.2.5-1.2 1.2C3 13.5 10.5 21 19.8 21c.7 0 1.2-.5 1.2-1.2v-3.3c0-.6-.4-1-1-1-1.2 0-2.4-.2-3.5-.6-.4-.1-.8 0-1.1.2l-2 2c-2.8-1.4-5.1-3.7-6.5-6.5l2-2c.3-.3.4-.7.2-1.1-.4-1.1-.6-2.3-.6-3.5 0-.6-.4-1-1-1Z"/></symbol>
+  <symbol id="ic-camera" viewBox="0 0 24 24"><path d="M9 3 7.6 5H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2.6L15 3H9Zm3 5a4.6 4.6 0 1 1 0 9.2A4.6 4.6 0 0 1 12 8Zm0 2a2.6 2.6 0 1 0 0 5.2A2.6 2.6 0 0 0 12 10Z"/></symbol>
+  <symbol id="ic-scooter" viewBox="0 0 24 24"><path d="M18.5 19a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Zm0-3.4a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8Z"/><path d="M5.5 19a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Zm0-3.4a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8Z"/><path d="M13.5 4H18v2h-3.3l1.7 7.6h-.9a3.5 3.5 0 0 0-6.6.4H8.4a3.5 3.5 0 0 0-6.4-.6H2v-2c0-1.1.9-2 2-2h6.6L9.8 6H7V4h4.2l.6 2.6h1.8L13.5 4Z"/></symbol>
+  <symbol id="ic-clock" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16Zm-1 3v6l4.8 2.9 1-1.7-3.8-2.3V7h-2Z"/></symbol>
+  <symbol id="ic-whatsapp" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 3.3 17L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.8.7.8-2.7-.3-.4A8 8 0 0 1 12 4ZM8.9 7.3c-.2 0-.5 0-.7.4-.3.4-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.2.2 2 3 4.7 4.1 2.3.9 2.8.7 3.3.7s1.6-.7 1.8-1.3c.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3l-1.7-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2-.2-.3 0-.4.1-.6l.5-.6c.2-.1.2-.3.3-.5.1-.2.1-.4 0-.5l-.8-2c-.2-.5-.4-.5-.6-.5h-.5Z"/></symbol>
+  <symbol id="ic-instagram" viewBox="0 0 24 24"><path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm4 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm4.3-3.2a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/></symbol>
+  <symbol id="ic-star" viewBox="0 0 24 24"><path d="M12 2.2l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17.7 6.1 20l1.3-6.5L2.5 9l6.6-.8L12 2.2Z"/></symbol>
+</svg>
+
+<div class="vignette"></div>
+<canvas id="embers"></canvas>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><img class="brand-logo" src="logo%20fire%20burguer.jpeg" alt="Fire Burger" />FIRE<b>BURGER</b></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#sobre">A Brasa</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#contato">Onde Estamos</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://fireburgerpizzascaldosegourmet.saipos.com/home" target="_blank" rel="noopener" class="btn desk-cta">Pedir Agora <svg class="svgi"><use href="#ic-fire"/></svg></a>
+      <button class="burger-ico" id="burgerIco" aria-label="menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <video class="hero-video hero-video--desktop" autoplay muted loop playsinline poster="img/real04.jpg">
+      <source src="hero-dashboard.mp4" type="video/mp4">
+    </video>
+    <video class="hero-video hero-video--mobile" autoplay muted loop playsinline poster="img/real04.jpg">
+      <source src="Video Project 6 mobile.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+  </div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Candeias · Vitória da Conquista · BA</span>
+        <h1>
+          <span class="line"><span>HAMBÚRGUER</span></span>
+          <span class="line"><span>QUE NÃO MATA FOME,</span></span>
+          <span class="line"><span>ACENDE <em>VONTADE</em>.</span></span>
+        </h1>
+        <div class="hero-actions">
+          <span class="firewrap"><span class="flames" aria-hidden="true"></span><a href="https://fireburgerpizzascaldosegourmet.saipos.com/home" target="_blank" rel="noopener" class="btn">Pedir Agora <svg class="svgi"><use href="#ic-fire"/></svg></a></span>
+          <a href="#cardapio" class="btn btn--ghost">Ver Cardápio</a>
+        </div>
+        <p class="lead">Pão na chapa com manteiga estalando. Carne pesada selada na brasa. Queijo escorrendo pela lateral e aquele vapor subindo a cada mordida. Você não vai só comer. Vai querer voltar antes mesmo de terminar.</p>
+        <div class="hero-meta">
+          <div class="m"><b>14K+</b><span>Seguidores</span></div>
+          <div class="m"><b>4.6<svg class="svgi star-suffix"><use href="#ic-star"/></svg></b><span>959 no Google</span></div>
+          <div class="m"><b>7 dias</b><span>Na Semana</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee">
+  <div class="marquee-track" id="mtrack">
+    <span>Queijo Derretido <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Carne na Brasa <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Pão na Manteiga <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Bacon Crocante <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Suco a Cada Mordida <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Feito na Hora <i><svg class="svgi"><use href="#ic-spark"/></svg></i></span>
+    <span>Queijo Derretido <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Carne na Brasa <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Pão na Manteiga <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Bacon Crocante <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Suco a Cada Mordida <i><svg class="svgi"><use href="#ic-spark"/></svg></i> Feito na Hora <i><svg class="svgi"><use href="#ic-spark"/></svg></i></span>
+  </div>
+</div>
+
+<!-- ===================== FAIXA PRODUTOS REAIS ===================== -->
+<section class="realband">
+  <!-- carrossel de fundo (JS duplica a track p/ loop perfeito) -->
+  <div class="realband-carousel">
+    <div class="rb-track">
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c01.jpg"></div>
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c02.jpg"></div>
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c03.jpg"></div>
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c04.jpg"></div>
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c05.jpg"></div>
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c06.jpg"></div>
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c07.jpg"></div>
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c08.jpg"></div>
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c09.jpg"></div>
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c10.jpg"></div>
+      <div class="rb-item"><img loading="lazy" alt="Produto Fire Burger" src="img/carrossel2/c11.jpg"></div>
+    </div>
+  </div>
+  <div class="realband-cap">
+    <span class="eyebrow">Comida de verdade</span>
+    <h3>Aqui matamos sua <em>fome</em>.</h3>
+  </div>
+</section>
+
+<!-- ===================== PRATOS DA CASA ===================== -->
+<section class="pratos sec-pad" id="sobre">
+  <!-- brasas/faíscas sutis no fundo (preenchidas via JS) -->
+  <div class="pratos-sparks gallery-particles" id="pratosSparks" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="pratos-grid">
+
+      <!-- imagem grande à esquerda -->
+      <div class="pratos-hero reveal">
+        <img alt="Hambúrguer artesanal Fire Burger na brasa" src="img/about-combo-fire.png">
+      </div>
+
+      <!-- conteúdo à direita -->
+      <div class="pratos-content">
+        <span class="pratos-brand reveal"><svg class="svgi"><use href="#ic-fire"/></svg> FIRE <b>BURGER</b></span>
+        <h2 class="pratos-title reveal d1">Pratos da Casa</h2>
+        <p class="pratos-sub reveal d2">Burgers autorais preparados na brasa, com sabor intenso e ingredientes selecionados.</p>
+
+        <div class="pratos-cards">
+          <!-- TROQUE AS IMAGENS dos pratos nos src= abaixo -->
+          <article class="prato-card reveal d1">
+            <div class="prato-thumb"><img loading="lazy" alt="Fire Burger Clássico" src="img/carrossel/g05.jpg"></div>
+            <div class="prato-info">
+              <h3>Fire Burger Clássico</h3>
+              <span class="prato-badge"><svg class="svgi"><use href="#ic-star"/></svg> Mais pedido</span>
+              <p>Pão brioche, blend grelhado, cheddar e bacon crocante.</p>
+            </div>
+          </article>
+
+          <article class="prato-card reveal d2">
+            <div class="prato-thumb"><img loading="lazy" alt="Smash Brasa Duplo" src="img/carrossel/g08.jpg"></div>
+            <div class="prato-info">
+              <h3>Smash Brasa Duplo</h3>
+              <span class="prato-badge"><svg class="svgi"><use href="#ic-chef"/></svg> Da casa</span>
+              <p>Dois smash burgers, queijo duplo e molho especial.</p>
+            </div>
+          </article>
+
+          <article class="prato-card reveal d3">
+            <div class="prato-thumb"><img loading="lazy" alt="Costela Fire" src="img/carrossel/g11.jpg"></div>
+            <div class="prato-info">
+              <h3>Costela Fire</h3>
+              <span class="prato-badge"><svg class="svgi"><use href="#ic-fire"/></svg> Defumado</span>
+              <p>Costela desfiada, cheddar cremoso e cebola roxa.</p>
+            </div>
+          </article>
+
+          <article class="prato-card reveal d4">
+            <!-- PLACEHOLDER: trocar por uma foto real de batata frita -->
+            <div class="prato-thumb"><img loading="lazy" alt="Batata Vulcão" src="img/carrossel2/c09.jpg"></div>
+            <div class="prato-info">
+              <h3>Batata Vulcão</h3>
+              <span class="prato-badge"><svg class="svgi"><use href="#ic-bolt"/></svg> Crocante</span>
+              <p>Batatas crocantes com cheddar cremoso e bacon.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CARDÁPIO ===================== -->
+<section class="menu sec-pad" id="cardapio">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">O Cardápio</span>
+      <h2>Escolha seu <span style="color:var(--flame)">lanche quente</span>.</h2>
+      <p>Os mais pedidos da casa: carne suculenta, queijo derretendo e pão tostado no ponto. Valores ilustrativos; confira preços, combos e promoções no delivery.</p>
+    </div>
+
+    <div class="menu-filters reveal d1" id="filters">
+      <button class="filter active" data-f="all">Tudo</button>
+      <button class="filter" data-f="smash">Smash</button>
+      <button class="filter" data-f="artesanal">Artesanais</button>
+      <button class="filter" data-f="pizza">Pizza</button>
+      <button class="filter" data-f="caldo">Caldos</button>
+      <button class="filter" data-f="extra">Acompanha</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <!-- cards injetados via JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NÚMEROS ===================== -->
+<section class="stats sec-pad">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat reveal"><div class="num" data-count="14000" data-suffix="+">0</div><div class="lbl">Apaixonados</div></div>
+      <div class="stat reveal d1"><div class="num" data-count="50" data-suffix="+">0</div><div class="lbl">Delícias no menu</div></div>
+      <div class="stat reveal d2"><div class="num" data-count="4.6" data-dec="1">0</div><div class="lbl">Nota média <svg class="svgi" style="width:.9em;height:.9em;color:var(--amber);vertical-align:-.1em"><use href="#ic-star"/></svg></div></div>
+      <div class="stat reveal d3"><div class="num" data-count="7" data-suffix=" dias">0</div><div class="lbl">Aberto na semana</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALERIA / CARROSSEL ===================== -->
+<section class="sec-pad gallery-sec" id="galeria">
+  <!-- camada de partículas douradas/laranja (preenchida via JS) -->
+  <div class="gallery-particles" id="gallerySparks" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">@fireburger.candeias</span>
+      <h2>Direto da <span style="color:var(--flame)">chapa</span>.</h2>
+      <p>É isso que sai da nossa cozinha todo santo dia. Olha, sente a água na boca, e segue a gente. A fome começa pelos olhos.</p>
+    </div>
+  </div>
+
+  <!-- Carrossel infinito (2 linhas). O JS duplica cada track para o loop perfeito. -->
+  <div class="carousel reveal d1" id="burgerCarousel">
+
+    <!-- ░░ LINHA 1 — troque as imagens nos src= abaixo ░░ -->
+    <div class="carousel-row carousel-row--1">
+      <div class="carousel-track">
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g01.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g02.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g03.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g04.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g05.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g06.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g07.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g08.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g09.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g10.jpg"></div>
+      </div>
+    </div>
+
+    <!-- ░░ LINHA 2 — troque as imagens nos src= abaixo ░░ -->
+    <div class="carousel-row carousel-row--2">
+      <div class="carousel-track">
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g11.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g12.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g13.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g14.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g15.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g16.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g02.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g05.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g08.jpg"></div>
+        <div class="ccard"><img loading="lazy" alt="Hambúrguer Fire Burger" src="img/carrossel/g11.jpg"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== CONTATO ===================== -->
+<section class="contact sec-pad" id="contato">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <span class="eyebrow reveal">Onde a Brasa Acende</span>
+        <h2 class="reveal d1" style="font-size:clamp(2rem,4.6vw,3.2rem);margin:.3em 0 .2em">Chega mais. A brasa tá acesa.</h2>
+        <ul class="info-list">
+          <li class="reveal d1"><div class="ic"><svg class="svgi"><use href="#ic-pin"/></svg></div><div><b>Endereço</b><span>Av. Alziro Prates, 292, Candeias, Vitória da Conquista - BA, 45028-075 · <a href="https://maps.app.goo.gl/gxtk2WfLhKHki3Jt8" target="_blank" rel="noopener">abrir no Maps</a></span></div></li>
+          <li class="reveal d2"><div class="ic"><svg class="svgi"><use href="#ic-phone"/></svg></div><div><b>WhatsApp / Pedidos</b><span><a href="https://wa.me/5577999914216" target="_blank" rel="noopener">(77) 99991-4216</a></span></div></li>
+          <li class="reveal d3"><div class="ic"><svg class="svgi"><use href="#ic-camera"/></svg></div><div><b>Instagram</b><span><a href="https://www.instagram.com/fireburger.candeias/" target="_blank" rel="noopener">@fireburger.candeias</a></span></div></li>
+          <li class="reveal d4"><div class="ic"><svg class="svgi"><use href="#ic-scooter"/></svg></div><div><b>Delivery</b><span><a href="https://fireburgerpizzascaldosegourmet.saipos.com/home" target="_blank" rel="noopener">Cardápio online · Saipos</a> · iFood</span></div></li>
+        </ul>
+        <div class="hours reveal d2">
+          <h4><svg class="svgi"><use href="#ic-clock"/></svg> Horário de Funcionamento <span class="open-pill" id="openPill">Aberto agora</span></h4>
+          <div class="row"><b>Segunda a Quinta</b><span>18:00 às 23:30</span></div>
+          <div class="row"><b>Sexta e Sábado</b><span>18:00 às 00:00</span></div>
+          <div class="row"><b>Domingo</b><span>18:00 às 23:00</span></div>
+        </div>
+      </div>
+      <div class="map-wrap reveal d2">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Fire+Burger+Av.+Alziro+Prates+292+Candeias+Vit%C3%B3ria+da+Conquista+BA&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="cta-final">
+  <div class="glow"></div>
+  <div class="wrap">
+    <h2 class="reveal">A fome bateu?<br><em>Acende essa brasa.</em></h2>
+    <p class="reveal d1">Seu próximo vício tá a um toque daqui. Pede agora, antes que a vontade aperte e bata aquele arrependimento de não ter pedido.</p>
+    <div class="hero-actions reveal d2">
+      <span class="firewrap firewrap--hot"><span class="flames" aria-hidden="true"></span><a href="https://fireburgerpizzascaldosegourmet.saipos.com/home" target="_blank" rel="noopener" class="btn">Pedir Agora <svg class="svgi"><use href="#ic-fire"/></svg></a></span>
+      <a href="https://wa.me/5577999914216" target="_blank" rel="noopener" class="btn btn--ghost">Chamar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <!-- Mascote animado (SVG) surgindo do canto inferior esquerdo -->
+  <img class="foot-mascot" src="mascote-burger.svg" alt="Mascote Fire Burger" loading="lazy" aria-hidden="true">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="brand"><img class="brand-logo" src="logo%20fire%20burguer.jpeg" alt="Fire Burger" />FIRE<b>BURGER</b></a>
+        <p>Carne pesada na brasa, queijo derretido e fome de gente feliz. Hambúrguer artesanal, pizza e caldos em Candeias, Vitória da Conquista, BA.</p>
+        <div class="foot-soc">
+          <a href="https://www.instagram.com/fireburger.candeias/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="svgi"><use href="#ic-instagram"/></svg></a>
+          <a href="https://wa.me/5577999914216" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="svgi"><use href="#ic-whatsapp"/></svg></a>
+          <a href="https://fireburgerpizzascaldosegourmet.saipos.com/home" target="_blank" rel="noopener" aria-label="Delivery"><svg class="svgi"><use href="#ic-scooter"/></svg></a>
+          <a href="https://maps.app.goo.gl/gxtk2WfLhKHki3Jt8" target="_blank" rel="noopener" aria-label="Google Maps"><svg class="svgi"><use href="#ic-pin"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Navegação</h5>
+        <a href="#sobre">A Brasa</a>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#contato">Onde Estamos</a>
+      </div>
+      <div class="foot-col">
+        <h5>Pedir</h5>
+        <a href="https://fireburgerpizzascaldosegourmet.saipos.com/home" target="_blank" rel="noopener">Delivery Online</a>
+        <a href="https://wa.me/5577999914216" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.instagram.com/fireburger.candeias/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://maps.app.goo.gl/gxtk2WfLhKHki3Jt8" target="_blank" rel="noopener">Google Maps</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Fire Burger · Candeias, Vitória da Conquista, BA</span>
+      <span>Feito com <svg class="svgi"><use href="#ic-fire"/></svg> · <a href="#top">voltar ao topo</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5577999914216" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="svgi"><use href="#ic-whatsapp"/></svg></a>
+
+<script>
+/* ============ MENU DATA (trocar por itens/preços reais do cliente) ============ */
+const MENU=[
+  {cat:"smash",name:"Smash Clássico",desc:"Dois discos smashados na chapa, cheddar duplo derretendo e o molho da casa. Simples, brutal, impossível parar.",price:"24,90",fire:2,tag:"Xodó",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"},
+  {cat:"smash",name:"Smash Bacon",desc:"Smash duplo, bacon estalando de crocante e cebola caramelizada no ponto doce. Cada mordida é um estalo.",price:"28,90",fire:3,tag:"",img:"https://images.unsplash.com/photo-1606131731446-5568d87113aa?auto=format&fit=crop&w=600&q=80"},
+  {cat:"artesanal",name:"Fire Signature",desc:"Carne alta e suculenta, cheddar, bacon crocante e molho fire defumado. O lanche que leva nosso nome e rouba sua fome.",price:"34,90",fire:3,tag:"Assinatura",img:"img/about-combo-fire.png"},
+  {cat:"artesanal",name:"Cheddar Burger",desc:"Carne suculenta afogada em cheddar cremoso e cebola roxa. Pra quem ama queijo escorrendo pela mão.",price:"30,90",fire:2,tag:"",img:"https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=600&q=80"},
+  {cat:"artesanal",name:"Salad Burger",desc:"Carne grelhada, salada fresquinha, queijo e maionese verde da casa. Mais leve, mas ainda cheio de sabor.",price:"29,90",fire:1,tag:"",img:"https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=600&q=80"},
+  {cat:"pizza",name:"Pizza Pepperoni",desc:"Massa artesanal, muçarela borbulhando e pepperoni dourado nas pontas. Direto do forno pro seu sorriso.",price:"45,90",fire:2,tag:"",img:"https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"},
+  {cat:"pizza",name:"Pizza Quatro Queijos",desc:"Muçarela, provolone, parmesão e catupiry derretendo juntos. Puxa a fatia e sente o cheiro subir.",price:"48,90",fire:1,tag:"Gourmet",img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80"},
+  {cat:"caldo",name:"Caldo de Feijão",desc:"Feijão cremoso, bacon e calabresa no capricho. Aquele caldo que abraça por dentro.",price:"18,90",fire:1,tag:"",img:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80"},
+  {cat:"caldo",name:"Caldo Verde",desc:"Batata, couve e calabresa pra fechar a noite quentinho. Conforto em forma de caldo.",price:"18,90",fire:1,tag:"",img:"https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&w=600&q=80"},
+  {cat:"extra",name:"Batata Frita Fire",desc:"Porção generosa, dourada por fora, macia por dentro, com nosso tempero secreto. Some antes do lanche chegar.",price:"19,90",fire:2,tag:"",img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80"},
+  {cat:"extra",name:"Onion Rings",desc:"Anéis de cebola empanados, dourados e crocantes. Aviso: impossível comer só um.",price:"21,90",fire:1,tag:"",img:"https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&fit=crop&w=600&q=80"},
+  {cat:"extra",name:"Milkshake",desc:"Cremoso, gelado, na medida certa. Chocolate, morango ou ovomaltine pra adoçar o final feliz.",price:"16,90",fire:1,tag:"",img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80"}
+];
+const ORDER_URL="https://fireburgerpizzascaldosegourmet.saipos.com/home";
+const grid=document.getElementById('menuGrid');
+function fireIcons(n){let s='';for(let i=0;i<3;i++){s+=`<svg class="svgi" style="opacity:${i<n?1:.22}"><use href="#ic-fire"/></svg>`;}return s;}
+function render(filter){
+  grid.innerHTML="";
+  MENU.filter(m=>filter==="all"||m.cat===filter).forEach((m,i)=>{
+    const a=document.createElement('article');
+    a.className="card reveal d"+((i%3)+1);
+    a.innerHTML=`
+      <div class="card-img">
+        <span class="card-fire" title="Nível de pegada">${fireIcons(m.fire)}</span>
+        ${m.tag?`<span class="card-tag">${m.tag}</span>`:""}
+        <img loading="lazy" alt="${m.name}" src="${m.img}" onerror="this.src='img/real04.jpg'">
+      </div>
+      <div class="card-body">
+        <h3>${m.name}</h3>
+        <p>${m.desc}</p>
+        <div class="card-foot">
+          <div class="price"><small>R$</small>${m.price}</div>
+          <a class="card-add" href="${ORDER_URL}" target="_blank" rel="noopener" aria-label="Pedir ${m.name}">+</a>
+        </div>
+      </div>`;
+    grid.appendChild(a);
+  });
+  observeReveals();
+  if(window.__premium3DTag) window.__premium3DTag();  // re-aplica o efeito 3D nos cards recriados
+}
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('.filter');if(!b)return;
+  document.querySelectorAll('.filter').forEach(f=>f.classList.remove('active'));
+  b.classList.add('active');render(b.dataset.f);
+});
+
+/* ============ REVEAL ON SCROLL ============ */
+let io;
+function observeReveals(){
+  if(!io){
+    io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.12});
+  }
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+}
+
+/* ============ NAV ============ */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40);},{passive:true});
+const navLinks=document.getElementById('navLinks');
+const burgerIco=document.getElementById('burgerIco');
+function setMenu(open){
+  navLinks.classList.toggle('open',open);
+  burgerIco.classList.toggle('open',open);
+  nav.classList.toggle('menu-open',open);
+  document.body.classList.toggle('menu-open',open);
+  burgerIco.setAttribute('aria-expanded',open ? 'true' : 'false');
+}
+burgerIco.addEventListener('click',()=>{
+  setMenu(!navLinks.classList.contains('open'));
+});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  setMenu(false);
+}));
+
+/* ============ HERO LINES REVEAL ============ */
+addEventListener('load',()=>{
+  document.querySelectorAll('.hero h1 .line>span').forEach((s,i)=>{
+    setTimeout(()=>s.style.transform="translateY(0)",250+i*140);
+  });
+});
+
+/* ============ CARROSSEL INFINITO ============ */
+/* Duplica os itens de cada track: a animação anda até -50%, então a 2ª cópia
+   assume o lugar da 1ª sem "pulo" — loop contínuo e perfeito. */
+document.querySelectorAll('#burgerCarousel .carousel-track, .rb-track').forEach(track=>{
+  track.innerHTML += track.innerHTML;   // duplica o conteúdo (cards de imagens)
+});
+
+/* Partículas/luzes douradas e laranja espalhadas no fundo */
+(function buildSparks(){
+  const tones=['#ffb23a','#ff7a18','#ffd27a','#ff5a1f'];
+  function fill(box){
+    if(!box) return;
+    const n=Math.min(34,Math.floor(innerWidth/40));
+    let html='';
+    for(let i=0;i<n;i++){
+      const s=(Math.random()*3+1.5).toFixed(1);          // tamanho 1.5–4.5px
+      const c=tones[i%tones.length];
+      html+=`<span class="spark" style="left:${(Math.random()*100).toFixed(2)}%;top:${(Math.random()*100).toFixed(2)}%;`+
+            `width:${s}px;height:${s}px;background:${c};box-shadow:0 0 ${(s*2.5).toFixed(0)}px ${c};`+
+            `animation-delay:${(Math.random()*4).toFixed(2)}s;animation-duration:${(Math.random()*3+3).toFixed(2)}s"></span>`;
+    }
+    box.innerHTML=html;
+  }
+  fill(document.getElementById('gallerySparks'));
+
+  /* MUITAS BRASAS subindo no fundo da seção "Pratos da Casa" */
+  const pbox=document.getElementById('pratosSparks');
+  if(pbox){
+    const n=Math.min(120,Math.max(60,Math.floor(innerWidth/16)));
+    let html='';
+    for(let i=0;i<n;i++){
+      const s=(Math.random()*3.2+1.2).toFixed(1);            // 1.2–4.4px
+      const c=tones[i%tones.length];
+      const dur=(Math.random()*6+4).toFixed(2);              // 4–10s
+      const rise=(Math.random()*340+260).toFixed(0);         // 260–600px
+      const drift=(Math.random()*120-60).toFixed(0);         // -60..60px
+      html+=`<span class="ember" style="left:${(Math.random()*100).toFixed(2)}%;`+
+            `width:${s}px;height:${s}px;background:${c};box-shadow:0 0 ${(s*3).toFixed(0)}px ${c},0 0 ${(s*6).toFixed(0)}px rgba(255,90,20,.5);`+
+            `--rise:${rise}px;--drift:${drift}px;animation-duration:${dur}s;animation-delay:-${(Math.random()*dur).toFixed(2)}s"></span>`;
+    }
+    pbox.innerHTML=html;
+  }
+})();
+
+/* ============ EFEITO 3D PREMIUM ============ */
+/* Aplica as classes reutilizáveis e um tilt 3D leve (opcional) seguindo o mouse.
+   Seguro: não dá erro se os elementos não existirem; tilt só em ponteiro fino (desktop). */
+(function premium3D(){
+  const reduce  = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const canTilt = matchMedia('(hover:hover) and (pointer:fine)').matches && !reduce;
+
+  // marca elementos com as classes; "tilt" adiciona data-tilt só onde faz sentido
+  function tag(selector, variant, tilt){
+    document.querySelectorAll(selector).forEach(el=>{
+      el.classList.add('premium-3d', variant);
+      if(tilt && canTilt) el.setAttribute('data-tilt','');
+    });
+  }
+  function applyAll(){
+    tag('.btn:not(.btn--ghost)','premium-3d--btn',false); // botões principais
+    tag('.card','premium-3d--card',true);                 // cards do menu (dinâmicos)
+    tag('.ccard','premium-3d--card',true);                // cards do carrossel
+    tag('.pillar','premium-3d--selo',true);               // selos/blocos de destaque
+  }
+  applyAll();
+  // exposto p/ re-aplicar nos cards recriados quando o menu é filtrado
+  window.__premium3DTag = applyAll;
+
+  if(!canTilt) return; // mobile/touch ou movimento reduzido: fica só o CSS (hover/active)
+
+  // Tilt por delegação → cobre cards criados depois (filtros do menu)
+  let raf=0, cur=null;
+  const reset = el => { if(el) el.style.transform=''; };
+  document.addEventListener('pointermove', e=>{
+    const el = e.target.closest('[data-tilt]');
+    if(el!==cur){ reset(cur); cur=el; }
+    if(!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left)/r.width  - .5;
+    const py = (e.clientY - r.top )/r.height - .5;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(()=>{
+      el.style.transform =
+        `perspective(900px) rotateX(${(-py*6).toFixed(2)}deg) rotateY(${(px*8).toFixed(2)}deg) translateY(-7px) scale(1.02)`;
+    });
+  },{passive:true});
+  // garante o reset ao sair da janela
+  window.addEventListener('blur', ()=>{ reset(cur); cur=null; });
+})();
+
+/* ============ LAYERS STAGGER ============ */
+const layers=document.getElementById('layers');
+if(layers){
+  new IntersectionObserver((es,o)=>{es.forEach(en=>{if(en.isIntersecting){
+    [...layers.children].forEach((li,i)=>setTimeout(()=>li.classList.add('in'),i*130));o.disconnect();}});},{threshold:.3}).observe(layers);
+}
+
+/* ============ COUNT UP ============ */
+function countUp(el){
+  const target=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),suf=el.dataset.suffix||"";
+  let start=0;const dur=1600,t0=performance.now();
+  function step(t){
+    const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3),val=target*e;
+    let out=dec?val.toFixed(dec):Math.floor(val).toLocaleString('pt-BR');
+    if(!dec&&target>=1000)out=(Math.floor(val/100)/10).toFixed(0)>=1&&target>=14000?Math.floor(val).toLocaleString('pt-BR'):out;
+    el.textContent=out+suf;
+    if(p<1)requestAnimationFrame(step);else el.textContent=(dec?target.toFixed(dec):target.toLocaleString('pt-BR'))+suf;
+  }
+  requestAnimationFrame(step);
+}
+document.querySelectorAll('.stat .num').forEach(n=>{
+  new IntersectionObserver((es,o)=>{es.forEach(en=>{if(en.isIntersecting){countUp(en.target);o.disconnect();}});},{threshold:.6}).observe(n);
+});
+
+/* ============ EMBERS CANVAS ============ */
+const cv=document.getElementById('embers'),cx2=cv.getContext('2d');
+let W,H,parts=[];
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+size();addEventListener('resize',size);
+const N=Math.min(70,Math.floor(innerWidth/22));
+for(let i=0;i<N;i++)parts.push(newP(true));
+function newP(init){return{x:Math.random()*W,y:init?Math.random()*H:H+10,r:Math.random()*2.4+.6,
+  vy:-(Math.random()*.7+.25),vx:(Math.random()-.5)*.4,life:Math.random(),hue:Math.random()*30+10,a:Math.random()*.6+.2};}
+function tick(){
+  cx2.clearRect(0,0,W,H);
+  parts.forEach((p,i)=>{
+    p.y+=p.vy;p.x+=p.vx+Math.sin(p.y*.01)*.3;p.life-=.002;
+    if(p.y<-10||p.life<=0)parts[i]=newP(false);
+    cx2.beginPath();
+    const g=cx2.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*3);
+    g.addColorStop(0,`hsla(${p.hue},100%,60%,${p.a})`);
+    g.addColorStop(1,`hsla(${p.hue},100%,50%,0)`);
+    cx2.fillStyle=g;cx2.arc(p.x,p.y,p.r*3,0,6.28);cx2.fill();
+  });
+  requestAnimationFrame(tick);
+}
+tick();
+
+/* ============ OPEN/CLOSED PILL ============ */
+(function(){
+  const h=new Date().getHours();
+  const pill=document.getElementById('openPill');
+  const open=h>=18||h<1; // 18h–01h
+  pill.textContent=open?"Aberto agora":"Fechado";
+  if(!open){pill.style.background="#ff6b6b";pill.style.color="#3d0a0a";}
+})();
+
+/* init */
+render("all");
+observeReveals();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Fire Burger",
+  "alternateName": ["Fire Burguer", "Fire Burger Candeias"],
+  "description": "Hambúrguer artesanal na brasa, pizza e caldos em Candeias, Vitória da Conquista BA. Carne pesada selada na brasa, queijo escorrendo e pão tostado na manteiga.",
+  "url": "https://fireburguer.com.br/",
+  "logo": "https://fireburguer.com.br/logo-fire-burger-perfil-1024.png",
+  "image": "https://fireburguer.com.br/logo-fire-burger-perfil-1024.png",
+  "telephone": "+55-77-99991-4216",
+  "priceRange": "R$",
+  "servesCuisine": ["Hambúrguer Artesanal", "Pizza", "Caldos"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Alziro Prates, 292",
+    "addressLocality": "Candeias",
+    "addressRegion": "BA",
+    "postalCode": "45028-075",
+    "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -14.857,
+    "longitude": -40.838
+  },
+  "hasMap": "https://maps.app.goo.gl/gxtk2WfLhKHki3Jt8",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "18:00",
+      "closes": "23:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday", "Saturday"],
+      "opens": "18:00",
+      "closes": "00:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "18:00",
+      "closes": "23:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/fireburger.candeias/",
+    "https://fireburgerpizzascaldosegourmet.saipos.com/home"
+  ],
+  "potentialAction": {
+    "@type": "OrderAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://fireburgerpizzascaldosegourmet.saipos.com/home",
+      "inLanguage": "pt-BR",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    },
+    "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeDirectDownload"]
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Vitória da Conquista"
+  },
+  "keywords": "hamburgueria Candeias, hamburguer artesanal Vitória da Conquista, hamburguer na brasa VCA, delivery hamburguer Candeias"
+}
+</script>
+</body>
+</html>

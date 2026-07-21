@@ -1,0 +1,21 @@
+{
+  "name": "Fire Burger Candeias",
+  "short_name": "Fire Burger",
+  "description": "Hamburguer artesanal na brasa em Candeias, Vitoria da Conquista.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0705",
+  "theme_color": "#0a0705",
+  "icons": [
+    {
+      "src": "/img/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

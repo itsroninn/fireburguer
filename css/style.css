@@ -1,0 +1,781 @@
+/* ============================================================
+   FIRE BURGER — single-file premium presentation site
+   Paleta: carvão + brasa (ember red → orange → amber)
+   Trocar fotos/preços/horários reais do cliente onde marcado.
+   ============================================================ */
+
+:root{
+  --char-900:#0a0705;       /* carvão profundo */
+  --char-800:#120c08;
+  --char-700:#1b120c;
+  --char-600:#241710;
+  --ember:#ff3d10;          /* brasa */
+  --ember-hot:#ff5a1f;
+  --flame:#ff8a17;          /* chama */
+  --amber:#ffb627;          /* âmbar */
+  --gold:#ffd27a;
+  --cream:#fbe9d6;
+  --smoke:#b9a392;
+  --line:rgba(255,138,23,.16);
+  --glow:0 0 60px rgba(255,61,16,.45);
+  --maxw:1240px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--char-900);
+  color:var(--cream);
+  font-family:"Sora",system-ui,sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--ember);color:#fff}
+
+/* ---------- SVG icon system (custom Fire Burger) ---------- */
+.svgi{width:1em;height:1em;display:inline-block;vertical-align:-.14em;fill:currentColor;flex:none}
+.brand .fl .svgi{width:19px;height:19px;color:#180a04}
+.btn .svgi{width:1.1em;height:1.1em;margin-left:.1em}
+.hero-badge .ic .svgi{width:20px;height:20px}
+.marquee i .svgi{width:.62em;height:.62em;color:var(--ember);vertical-align:-.05em}
+.pillar .ic{color:var(--flame)}
+.pillar .ic .svgi{width:1.5rem;height:1.5rem}
+.info-list .ic{color:var(--flame)}
+.info-list .ic .svgi{width:1.25rem;height:1.25rem}
+.hours h4 .svgi{width:1.1em;height:1.1em;color:var(--flame);vertical-align:-.18em}
+.card-fire .svgi{width:13px;height:13px;color:var(--flame)}
+.foot-soc a .svgi{width:18px;height:18px}
+.wa-float .svgi{width:27px;height:27px;position:relative;z-index:2}
+.star-suffix{width:.7em;height:.7em;color:var(--amber);margin-left:.08em;vertical-align:.02em}
+.foot-bot .svgi{width:1em;height:1em;color:var(--ember);vertical-align:-.14em}
+
+/* ---------- grain + atmosfera global ---------- */
+body::before{
+  content:"";position:fixed;inset:0;z-index:9990;pointer-events:none;
+  opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.vignette{position:fixed;inset:0;z-index:9989;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 0%,transparent 40%,rgba(0,0,0,.55) 100%);}
+
+/* embers canvas */
+#embers{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+/* ---------- layout helpers ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:2}
+section{position:relative;z-index:2}
+.eyebrow{font-family:"Sora";font-weight:700;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--flame);display:inline-flex;align-items:center;gap:.7em}
+.eyebrow::before{content:"";width:30px;height:1px;background:linear-gradient(90deg,var(--ember),transparent)}
+h1,h2,h3{font-family:"Bricolage Grotesque","Sora",sans-serif;font-weight:800;line-height:1.02;letter-spacing:-.02em}
+.display{font-family:"Anton",sans-serif;font-weight:400;letter-spacing:.01em;text-transform:uppercase;line-height:.86}
+
+.btn{position:relative;display:inline-flex;align-items:center;gap:.6em;font-family:"Sora";font-weight:700;
+  font-size:.92rem;letter-spacing:.02em;padding:1.05em 1.9em;border-radius:100px;border:none;cursor:pointer;
+  text-decoration:none;color:#180a04;overflow:hidden;isolation:isolate;transition:transform .4s var(--ease),box-shadow .4s}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(120deg,var(--amber),var(--ember-hot) 60%,var(--ember));transition:transform .5s var(--ease)}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;transform:translateX(-101%);
+  background:linear-gradient(120deg,var(--gold),var(--flame));transition:transform .5s var(--ease)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(255,61,16,.7)}
+.btn:hover::after{transform:translateX(0)}
+.btn--ghost{color:var(--cream);background:transparent;border:1.5px solid var(--line)}
+.btn--ghost::before,.btn--ghost::after{display:none}
+.btn--ghost:hover{border-color:var(--flame);background:rgba(255,138,23,.07)}
+/* destaque: brilho âmbar pulsante p/ chamar atenção */
+.btn--destaque{border-color:rgba(255,170,60,.9);color:var(--cream);
+  background:rgba(255,138,23,.10);animation:btnDestaque 2s ease-in-out infinite}
+@keyframes btnDestaque{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,138,23,.45),0 0 14px rgba(255,90,20,.25)}
+  50%    {box-shadow:0 0 0 6px rgba(255,138,23,0),0 0 26px rgba(255,90,20,.55)}}
+.btn--destaque:hover{border-color:var(--amber);background:rgba(255,138,23,.16);
+  box-shadow:0 0 24px rgba(255,138,23,.6)}
+/* brilho diagonal cruzando o botão */
+.btn.btn--destaque::after{display:block;content:"";position:absolute;top:0;left:-70%;width:55%;height:100%;z-index:1;
+  pointer-events:none;transform:skewX(-20deg);
+  background:linear-gradient(110deg,transparent,rgba(255,225,160,.55),transparent);
+  animation:btnShine 3.2s ease-in-out infinite}
+@keyframes btnShine{0%{left:-70%}55%,100%{left:150%}}
+@media(prefers-reduced-motion:reduce){.btn--destaque,.btn.btn--destaque::after{animation:none}.btn.btn--destaque::after{display:none}}
+
+/* ---------- botão pegando fogo (acende no hover) ---------- */
+.firewrap{position:relative;display:inline-flex;isolation:isolate}
+.firewrap .flames{position:absolute;left:3%;right:3%;bottom:-14px;height:62px;z-index:-1;pointer-events:none;
+  transform-origin:bottom center;transform:translateY(12px) scaleY(.3);opacity:0;
+  transition:opacity .22s ease,transform .35s var(--ease);
+  filter:blur(6px) contrast(1.15);
+  background:
+    radial-gradient(closest-side at 10% 100%,#ffe680,#ff7a00 50%,transparent 70%),
+    radial-gradient(closest-side at 26% 100%,#ffc233,#ff3d10 50%,transparent 72%),
+    radial-gradient(closest-side at 42% 100%,#ffe680,#ff7a00 50%,transparent 70%),
+    radial-gradient(closest-side at 58% 100%,#ffc233,#ff3d10 50%,transparent 72%),
+    radial-gradient(closest-side at 74% 100%,#ffe680,#ff8a17 50%,transparent 70%),
+    radial-gradient(closest-side at 90% 100%,#ffd24d,#ff5a1f 50%,transparent 72%);
+  background-size:20% 100%,22% 132%,18% 116%,22% 132%,18% 112%,20% 126%;
+  background-repeat:no-repeat;
+  background-position:10% 100%,26% 100%,42% 100%,58% 100%,74% 100%,90% 100%;}
+.firewrap:hover .flames,.firewrap:focus-within .flames,.firewrap--hot .flames{opacity:1;transform:translateY(0) scaleY(1);
+  animation:flicker .5s ease-in-out infinite alternate}
+@keyframes flicker{
+  0%{background-position:10% 100%,26% 86%,42% 104%,58% 84%,74% 96%,90% 90%;filter:blur(6px) brightness(1)}
+  50%{background-position:12% 60%,24% 48%,44% 72%,56% 46%,72% 58%,88% 52%;filter:blur(8px) brightness(1.38)}
+  100%{background-position:9% 82%,27% 62%,41% 90%,59% 58%,75% 76%,91% 68%;filter:blur(6px) brightness(1.14)}}
+.firewrap .btn{transition:transform .4s var(--ease),box-shadow .4s,filter .35s}
+.firewrap:hover .btn,.firewrap--hot .btn{filter:brightness(1.06);box-shadow:0 -3px 24px rgba(255,90,20,.55),0 12px 38px -8px rgba(255,80,20,.85)}
+.firewrap::after{content:"";position:absolute;left:8%;right:8%;bottom:-10px;height:22px;z-index:-2;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(255,90,20,.8),transparent 70%);filter:blur(7px);opacity:0;transition:opacity .3s}
+.firewrap:hover::after,.firewrap--hot::after{opacity:1;animation:emberpulse 1.4s ease-in-out infinite}
+@keyframes emberpulse{50%{opacity:.5;transform:scaleX(1.14)}}
+@media(prefers-reduced-motion:reduce){.firewrap .flames,.firewrap::after{animation:none;transition:opacity .2s}}
+
+/* ============================================================ NAV */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:9000;transition:.4s var(--ease)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:22px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav.menu-open{background:rgba(10,7,5,.94);border-bottom:1px solid var(--line)}
+.nav.scrolled{backdrop-filter:blur(14px);background:rgba(10,7,5,.72);border-bottom:1px solid var(--line)}
+.nav.scrolled .nav-inner{padding:14px 28px}
+.brand{display:flex;align-items:center;gap:.55em;font-family:"Anton";font-size:1.5rem;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--cream);text-decoration:none}
+.brand .fl{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:radial-gradient(circle at 50% 35%,var(--amber),var(--ember) 70%);box-shadow:var(--glow);font-size:1rem}
+.brand-logo{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none;
+  box-shadow:0 0 0 1.5px rgba(255,138,23,.5),0 0 26px rgba(255,61,16,.5);transition:transform .5s var(--ease),box-shadow .5s}
+.brand:hover .brand-logo{transform:rotate(-8deg) scale(1.06);box-shadow:0 0 0 1.5px var(--amber),0 0 36px rgba(255,90,31,.75)}
+.brand b{color:var(--flame)}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{color:var(--smoke);text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.02em;position:relative;transition:color .3s,text-shadow .3s var(--ease);isolation:isolate}
+.nav-links a::before{content:"";position:absolute;left:50%;bottom:-11px;width:120%;height:28px;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% 100%,rgba(255,213,79,.95) 0 12%,rgba(255,138,23,.7) 24%,transparent 50%),
+    radial-gradient(ellipse at 50% 100%,rgba(255,61,16,.9) 0 13%,rgba(255,138,23,.68) 28%,transparent 54%),
+    radial-gradient(ellipse at 82% 100%,rgba(255,213,79,.85) 0 10%,rgba(255,61,16,.64) 26%,transparent 50%);
+  filter:blur(5px);opacity:0;transform:translateX(-50%) translateY(8px) scaleX(.7);transition:opacity .24s ease,transform .32s var(--ease)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:linear-gradient(90deg,var(--ember),var(--amber),#ffe082,var(--ember));box-shadow:0 0 14px rgba(255,90,31,.78);transition:width .35s var(--ease)}
+.nav-links a:hover{color:#ffd54f;background-image:linear-gradient(180deg,#fff7bf 0%,#ffd54f 22%,#ff8a17 48%,#ff3d10 72%,#7a1407 100%);background-size:100% 240%;background-position:50% 100%;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 8px rgba(255,213,79,.95),0 0 18px rgba(255,90,31,.85),0 -8px 18px rgba(255,61,16,.45);animation:navTextFire .72s infinite alternate ease-in-out}
+.nav-links a:hover::before{opacity:1;transform:translateX(-50%) translateY(0) scaleX(1);animation:navFireFlicker .8s infinite alternate ease-in-out}
+.nav-links a:hover::after{width:100%}
+@keyframes navTextFire{
+  0%{background-position:50% 100%;filter:drop-shadow(0 -1px 4px rgba(255,213,79,.5))}
+  50%{background-position:50% 46%;filter:drop-shadow(0 -2px 7px rgba(255,90,31,.62))}
+  100%{background-position:50% 8%;filter:drop-shadow(0 -1px 5px rgba(255,138,23,.58))}
+}
+@keyframes navFireFlicker{
+  0%{filter:blur(5px);opacity:.72;transform:translateX(-50%) translateY(3px) scaleX(.92) scaleY(.82)}
+  45%{filter:blur(4px);opacity:1;transform:translateX(-50%) translateY(-1px) scaleX(1.04) scaleY(1.08)}
+  100%{filter:blur(6px);opacity:.86;transform:translateX(-50%) translateY(1px) scaleX(.98) scaleY(.95)}
+}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.burger-ico{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.burger-ico span{width:26px;height:2px;background:var(--cream);transition:.3s}
+@media(max-width:920px){
+  body.menu-open{overflow:hidden}
+  .nav-inner{position:relative;z-index:9002}
+  .nav-links{position:fixed;top:0;left:0;width:100vw;height:100dvh;min-height:100svh;
+    flex-direction:column;justify-content:center;align-items:center;padding:96px 28px 40px;
+    background:
+      radial-gradient(circle at 16% 12%,rgba(255,61,16,.28),transparent 32%),
+      radial-gradient(circle at 84% 92%,rgba(255,138,23,.18),transparent 34%),
+      linear-gradient(180deg,rgba(10,7,5,.99),rgba(18,10,5,.98));
+    backdrop-filter:blur(14px);gap:26px;z-index:9001;transform:translateY(-105%);opacity:0;visibility:hidden;
+    pointer-events:none;transition:transform .5s var(--ease),opacity .3s ease,visibility 0s linear .5s}
+  .nav-links.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto;transition:transform .5s var(--ease),opacity .3s ease}
+  .nav-links a{width:min(320px,86vw);padding:14px 18px;border:1px solid rgba(255,138,23,.16);border-radius:12px;
+    background:rgba(255,138,23,.035);text-align:center;font-size:1.35rem;font-family:"Bricolage Grotesque";color:var(--cream)}
+  .nav-links a::after{display:none}
+  .nav-links a:hover{background:rgba(255,138,23,.1);border-color:rgba(255,138,23,.38)}
+  .burger-ico{display:flex;z-index:9001}
+  .burger-ico.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger-ico.open span:nth-child(2){opacity:0}
+  .burger-ico.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav .desk-cta{display:none}
+}
+
+/* ============================================================ HERO */
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:120px;padding-bottom:60px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-video--mobile{display:none}
+@media(max-width:760px){.hero-video--desktop{display:none}.hero-video--mobile{display:block}}
+.hero-video-overlay{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(10,6,4,.94) 0%,rgba(10,6,4,.82) 38%,rgba(10,6,4,.45) 68%,rgba(10,6,4,.6) 100%),
+  linear-gradient(0deg,rgba(10,6,4,.8) 0%,transparent 35%,transparent 70%,rgba(10,6,4,.55) 100%)}
+.hero-bg .glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55}
+.hero-bg .g1{width:60vw;height:60vw;left:-15vw;top:-10vw;background:radial-gradient(circle,var(--ember),transparent 65%)}
+.hero-bg .g2{width:50vw;height:50vw;right:-12vw;bottom:-18vw;background:radial-gradient(circle,var(--flame),transparent 60%);opacity:.4}
+.hero>.wrap{width:100%;max-width:none;padding-left:clamp(24px,7vw,130px);padding-right:24px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center;width:100%}
+.hero-copy{position:relative;z-index:3;min-width:0;max-width:640px}
+.hero h1{max-width:640px;font-size:clamp(2.4rem,6.6vw,5.65rem);margin:.18em 0 .34em}
+.hero h1 .line{display:block;overflow:hidden;padding-right:.12em;margin-right:-.12em}
+.hero h1 .line>span{display:block;transform:translateY(110%);transition:transform 1s var(--ease)}
+.hero h1 .line:first-child>span{font-size:.88em}
+.hero h1 em{font-style:normal;color:transparent;background:linear-gradient(100deg,var(--amber),var(--ember-hot) 55%,var(--ember));
+  -webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 4px 30px rgba(255,61,16,.45))}
+.hero p.lead{max-width:46ch;color:var(--smoke);font-size:1.08rem;margin-top:1.6em;margin-bottom:0}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.hero-meta{display:flex;gap:30px;margin-top:2.6em;flex-wrap:wrap}
+.hero-meta .m{display:flex;flex-direction:column}
+.hero-meta .m b{font-family:"Anton";font-size:1.7rem;color:var(--cream);letter-spacing:.02em}
+.hero-meta .m span{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--flame)}
+
+/* hero visual */
+.hero-visual{position:absolute;z-index:2;top:0;right:max(4vw,20px);height:100%;width:clamp(300px,30vw,460px);pointer-events:none}
+.disc{position:absolute;inset:6%;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--ember),var(--flame),var(--amber),var(--flame),var(--ember));
+  filter:blur(2px);opacity:.9;animation:spin 18s linear infinite;mask:radial-gradient(circle,transparent 56%,#000 57%)}
+.disc.d2{inset:0;opacity:.35;animation-duration:34s;animation-direction:reverse;mask:radial-gradient(circle,transparent 62%,#000 63%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-photo{position:relative;display:block;width:92%;aspect-ratio:1/1;border-radius:50%;object-fit:cover;background:#180a04;
+  box-shadow:0 40px 90px -20px rgba(255,61,16,.55),inset 0 0 0 6px rgba(255,138,23,.18);
+  animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-16px)}}
+.hero-badge{position:absolute;z-index:4;background:rgba(18,12,8,.82);backdrop-filter:blur(8px);
+  border:1px solid var(--line);border-radius:16px;padding:12px 16px;display:flex;align-items:center;gap:10px;
+  box-shadow:0 14px 30px -10px rgba(0,0,0,.6)}
+.hero-badge .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:1.05rem;
+  background:linear-gradient(135deg,var(--ember),var(--amber));color:#180a04}
+.hero-badge b{font-size:.95rem;color:var(--cream)}
+.hero-badge small{display:block;color:var(--smoke);font-size:.7rem;letter-spacing:.05em}
+.hb-1{top:7%;left:7%;animation:floaty 5s ease-in-out infinite}
+.hb-2{bottom:11%;right:0;animation:floaty 7s ease-in-out infinite .6s}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:5;
+  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--smoke);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-cue .bar{width:1px;height:42px;background:linear-gradient(var(--flame),transparent);animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
+@media(min-width:921px){
+  .hero{padding-top:120px}
+  .hero-grid{grid-template-columns:1fr;gap:52px}
+  .hero-visual{width:clamp(360px,30vw,460px)}
+  .hb-1{left:7%;top:10%}.hb-2{right:0;bottom:12%}
+}
+@media(min-width:921px) and (max-width:1280px){
+  .hero-copy{max-width:600px}
+  .hero h1{max-width:600px;font-size:clamp(3.35rem,4.75vw,4.55rem)}
+  .hero-visual{width:clamp(300px,26vw,400px)}
+  .hero-badge{max-width:280px}
+}
+@media(min-width:1700px){
+  .hero-copy{max-width:720px}
+  .hero h1{max-width:720px;font-size:clamp(4.2rem,5.3vw,6.5rem)}
+  .hero-visual{width:clamp(460px,30vw,560px)}
+}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;gap:10px}.hero-visual{display:none}}
+
+/* ============================================================ MARQUEE */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--char-800);
+  padding:20px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:3}
+.marquee-track{display:inline-flex;gap:0;animation:slide 28s linear infinite reverse}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{font-family:"Anton";font-size:1.5rem;text-transform:uppercase;letter-spacing:.04em;color:var(--cream);padding:0 28px;display:inline-flex;align-items:center;gap:28px}
+.marquee span i{color:var(--ember);font-style:normal}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ============================================================ FAIXA PRODUTOS REAIS */
+.realband{position:relative;overflow:hidden;border-bottom:1px solid var(--line);z-index:3;background:#0a0705;
+  height:clamp(180px,26vw,320px)}
+/* carrossel de fundo (linha única, contínuo) */
+.realband-carousel{position:absolute;inset:0;overflow:hidden;z-index:0}
+.rb-track{display:flex;height:100%;width:max-content;will-change:transform;animation:scrollLeft 60s linear infinite}
+.realband:hover .rb-track{animation-play-state:paused}
+.rb-item{flex:0 0 auto;height:100%;width:clamp(220px,24vw,320px)}
+.rb-item img{width:100%;height:100%;object-fit:cover;display:block}
+.realband-cap{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:.4em;padding:0 6vw;
+  background:linear-gradient(90deg,rgba(10,7,5,.94),rgba(10,7,5,.55) 48%,rgba(10,7,5,.12) 78%)}
+.realband-cap h3{font-family:"Bricolage Grotesque";font-size:clamp(1.5rem,3.6vw,2.6rem);line-height:1}
+.realband-cap h3 em{font-style:normal;color:var(--flame)}
+@media(max-width:560px){.realband-cap{background:linear-gradient(rgba(10,7,5,.6),rgba(10,7,5,.6))}}
+@media(prefers-reduced-motion:reduce){.rb-track{animation:none}}
+
+/* ============================================================ generic section head */
+.shead{max-width:760px;margin-bottom:60px}
+.shead h2{font-size:clamp(2.2rem,5.2vw,4rem);margin:.3em 0 .4em}
+.shead p{color:var(--smoke);font-size:1.05rem}
+.sec-pad{padding:120px 0}
+
+/* ============================================================ SOBRE */
+.about{position:relative;overflow:hidden}
+/* formas curvas decorativas no fundo (cinza + laranja) */
+.about-shapes{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.about-shapes::before{content:"";position:absolute;width:64vw;height:64vw;right:-20vw;top:-24vw;
+  border-radius:46% 54% 52% 48%/52% 46% 54% 48%;
+  background:radial-gradient(circle at 42% 42%,rgba(255,106,26,.22),rgba(255,106,26,0) 64%);filter:blur(12px)}
+.about-shapes::after{content:"";position:absolute;width:56vw;height:56vw;left:-22vw;bottom:-26vw;
+  border-radius:50% 50% 48% 52%/52% 48% 52% 48%;
+  background:radial-gradient(circle,rgba(156,162,171,.16),rgba(156,162,171,0) 64%);filter:blur(10px)}
+.about-curves{position:absolute;inset:0;width:100%;height:100%}
+.about-curves .cv-gray{fill:#9aa0a8;opacity:.07}
+.about-curves .cv-orange{fill:#ff6a1a;opacity:.10}
+.about-curves .cv-line{fill:none;stroke:#ff8a17;stroke-width:3;opacity:.22;stroke-linecap:round}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-photos{position:relative;aspect-ratio:1/1;isolation:isolate}
+.about-photos::before{content:"";position:absolute;inset:7%;border-radius:20px;
+  background:
+    linear-gradient(135deg,rgba(255,138,23,.12),transparent 36%,rgba(255,61,16,.12)),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 1px,transparent 1px 10px),
+    var(--char-700);
+  border:1px solid rgba(255,138,23,.18);box-shadow:0 34px 80px -32px rgba(255,61,16,.75);z-index:-2}
+.about-photos::after{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,61,16,.28),transparent 62%);filter:blur(28px);z-index:-3}
+.about-photos img{position:absolute;object-fit:cover;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.about-photos .p1{width:78%;height:78%;top:8%;left:7%;border-radius:18px;border:1px solid rgba(255,138,23,.28);
+  object-position:68% 50%;filter:saturate(1.06) contrast(1.04)}
+.about-photos .p2{width:40%;height:40%;right:-1%;bottom:3%;border-radius:18px;border:4px solid var(--char-900);
+  background:var(--char-900);box-shadow:0 0 0 1px rgba(255,182,39,.5),0 28px 56px -18px rgba(255,61,16,.85);
+  transform:rotate(-1.5deg)}
+.about-photos .tag{position:absolute;top:14%;right:2%;background:rgba(18,12,8,.88);border:1px solid rgba(255,138,23,.28);
+  backdrop-filter:blur(10px);border-radius:14px;padding:13px 17px;z-index:3;box-shadow:0 18px 42px -22px rgba(255,61,16,.85)}
+.about-photos .tag b{font-family:"Anton";font-size:2rem;color:var(--flame);display:block;line-height:1}
+.about-photos .tag span{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--smoke)}
+.about-copy h2{font-size:clamp(2rem,4.6vw,3.4rem);margin:.3em 0 .5em}
+.about-copy p{color:var(--smoke);margin-bottom:1.2em}
+.about-copy strong{color:var(--cream)}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.pillar{border:1px solid var(--line);border-radius:14px;padding:18px 16px;background:rgba(255,138,23,.03);transition:.4s var(--ease)}
+.pillar:hover{transform:translateY(-6px);border-color:var(--flame);background:rgba(255,138,23,.07)}
+.pillar .ic{font-size:1.5rem;margin-bottom:8px}
+.pillar b{display:block;font-size:.95rem;color:var(--cream)}
+.pillar span{font-size:.8rem;color:var(--smoke)}
+@media(max-width:880px){.about-grid{grid-template-columns:1fr;gap:80px}}
+
+/* ============================================================ PRATOS DA CASA */
+.pratos{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 8% 30%,#1b1109 0%,#0a0705 55%,#070504 100%);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pratos-sparks{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+/* brasas subindo no fundo */
+.pratos-sparks .ember{position:absolute;bottom:-12px;border-radius:50%;will-change:transform,opacity;
+  animation:emberRise linear infinite}
+@keyframes emberRise{
+  0%{transform:translate(0,0) scale(1);opacity:0}
+  10%{opacity:.95}
+  78%{opacity:.7}
+  100%{transform:translate(var(--drift,0),calc(var(--rise,420px)*-1)) scale(.25);opacity:0}}
+@media(prefers-reduced-motion:reduce){.pratos-sparks .ember{animation:none;opacity:.5}}
+.pratos::before{content:"";position:absolute;left:-8%;bottom:-20%;width:62%;height:90%;z-index:0;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,90,20,.26),transparent 72%);filter:blur(22px)}
+.pratos::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:0;pointer-events:none;
+  background:linear-gradient(0deg,rgba(255,80,16,.16),transparent)}
+.pratos .wrap{position:relative;z-index:2}
+.pratos-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.1fr);gap:40px;align-items:center}
+
+/* imagem grande à esquerda */
+.pratos-hero{position:relative;min-height:620px;display:flex;align-items:center;justify-content:center;overflow:visible}
+.pratos-hero img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;
+  transform:translateX(-7%) scale(1.28);         /* imagem maior, deslocada p/ esquerda */
+  /* sombra em camadas: contato + difusa + halo de brasa */
+  filter:
+    drop-shadow(0 8px 10px rgba(0,0,0,.55))
+    drop-shadow(0 34px 38px rgba(0,0,0,.5))
+    drop-shadow(0 60px 80px rgba(0,0,0,.45))
+    drop-shadow(0 0 60px rgba(255,100,25,.28))}
+
+/* coluna de conteúdo */
+.pratos-brand{display:inline-flex;align-items:center;gap:10px;font-family:"Anton";letter-spacing:.18em;
+  text-transform:uppercase;font-size:1rem;color:var(--cream)}
+.pratos-brand b{color:var(--flame);font-weight:400}
+.pratos-brand .svgi{width:1.3em;height:1.3em;color:var(--ember)}
+.pratos-title{font-family:"Anton";text-transform:uppercase;letter-spacing:.02em;line-height:.95;
+  font-size:clamp(2.6rem,5.4vw,4.6rem);margin:.18em 0 .25em;
+  background:linear-gradient(180deg,#fff 0%,#d7d9dd 45%,#9aa0a8 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 1px rgba(0,0,0,.5))}
+.pratos-sub{color:var(--smoke);max-width:48ch;font-size:1.04rem;margin-bottom:30px}
+
+/* grade 2x2 de cards */
+.pratos-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.prato-card{display:flex;gap:14px;padding:14px;border-radius:16px;
+  border:1px solid rgba(255,148,32,.32);background:rgba(18,12,8,.55);backdrop-filter:blur(4px);
+  transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.prato-card:hover{transform:translateY(-5px);border-color:rgba(255,173,58,.85);
+  box-shadow:0 22px 44px -16px rgba(0,0,0,.8),0 0 26px rgba(255,126,24,.28)}
+.prato-thumb{flex:0 0 92px;width:92px;height:92px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.prato-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.prato-info{min-width:0;display:flex;flex-direction:column;gap:7px}
+.prato-info h3{font-size:1.05rem;line-height:1.15;color:var(--cream)}
+.prato-badge{align-self:flex-start;display:inline-flex;align-items:center;gap:5px;
+  font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--amber);border:1px solid rgba(255,148,32,.5);border-radius:100px;padding:3px 9px;
+  background:rgba(255,138,23,.08)}
+.prato-badge .svgi{width:.85em;height:.85em}
+.prato-info p{font-size:.82rem;color:var(--smoke);line-height:1.35}
+
+@media(max-width:1100px){.pratos-grid{grid-template-columns:1fr;gap:34px}
+  .pratos-hero{min-height:340px}}
+@media(max-width:620px){.pratos-cards{grid-template-columns:1fr}
+  .pratos-hero{min-height:260px}}
+@media(max-width:380px){.prato-card{flex-direction:column}.prato-thumb{width:100%;height:120px;flex-basis:auto}}
+/* MOBILE: remove a foto do hambúrguer (copy sobre o fundo escuro da seção) */
+@media(max-width:760px){
+  .pratos-hero{display:none}
+  .pratos-content{position:relative;z-index:2}
+}
+
+/* ============================================================ CARDÁPIO */
+.menu{background:var(--char-800);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.menu-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px}
+/* categorias extras escondidas até clicar em "Ver mais" */
+.menu-filters .filter--extra{display:none}
+.menu-filters.show-all .filter--extra{display:inline-flex}
+.filter-more{border-style:dashed!important;color:var(--flame)!important}
+.filter{font-family:"Sora";font-weight:600;font-size:.86rem;letter-spacing:.02em;color:var(--smoke);
+  border:1px solid var(--line);background:transparent;border-radius:100px;padding:.65em 1.3em;cursor:pointer;transition:.3s}
+.filter.active,.filter:hover{color:#180a04;background:linear-gradient(120deg,var(--amber),var(--ember-hot));border-color:transparent}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--char-700);
+  transition:transform .5s var(--ease),box-shadow .5s,border-color .5s;will-change:transform}
+.card:hover{transform:translateY(-10px);border-color:rgba(255,138,23,.4);box-shadow:0 30px 60px -22px rgba(255,61,16,.5)}
+.card-img{position:relative;aspect-ratio:4/3;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.card:hover .card-img img{transform:scale(1.08)}
+.card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(10,7,5,.85))}
+.card-fire{position:absolute;top:12px;left:12px;z-index:2;display:flex;gap:3px;background:rgba(10,7,5,.6);
+  backdrop-filter:blur(6px);padding:5px 9px;border-radius:100px;font-size:.7rem}
+.card-tag{position:absolute;top:12px;right:12px;z-index:2;background:linear-gradient(120deg,var(--ember),var(--amber));
+  color:#180a04;font-weight:700;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:100px}
+.card-body{padding:20px 22px 24px}
+.card-body h3{font-size:1.18rem;margin-bottom:6px}
+.card-body p{font-size:.86rem;color:var(--smoke);min-height:2.6em;margin-bottom:16px}
+.card-foot{display:flex;align-items:center;justify-content:space-between}
+.price{font-family:"Anton";font-size:1.5rem;color:var(--flame);letter-spacing:.02em}
+.price small{font-size:.7rem;color:var(--smoke);font-family:"Sora";margin-right:3px}
+.card-add{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  background:linear-gradient(135deg,var(--ember),var(--amber));color:#180a04;border:none;font-size:1.3rem;
+  transition:.35s var(--ease)}
+.card-add:hover{transform:rotate(90deg) scale(1.08)}
+/* card simples (só nome + valor) — cervejas e açaí */
+.card--simple{display:flex;align-items:center;min-height:96px}
+.card--simple .card-body{padding:18px 20px;width:100%}
+.card--simple h3{margin-bottom:12px;font-size:1.1rem}
+.card--simple .card-foot{margin-top:0}
+@media(max-width:980px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.menu-grid{grid-template-columns:1fr}}
+
+/* ============================================================ MONTAGEM / ingredientes */
+.build{overflow:hidden}
+.build-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+.stack{position:relative;aspect-ratio:1/1;display:grid;place-items:center}
+.stack .ring{position:absolute;inset:0;border-radius:50%;border:1px dashed var(--line);animation:spin 40s linear infinite}
+.stack .ring.r2{inset:12%;animation-duration:26s;animation-direction:reverse;border-color:rgba(255,61,16,.18)}
+.stack-photo{width:78%;border-radius:24px;object-fit:cover;aspect-ratio:1/1;
+  box-shadow:0 40px 80px -24px rgba(255,61,16,.55)}
+.layers{list-style:none}
+.layers li{display:flex;align-items:flex-start;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);
+  opacity:0;transform:translateX(30px);transition:.7s var(--ease)}
+.layers li.in{opacity:1;transform:none}
+.layers .n{font-family:"Anton";font-size:1.2rem;color:var(--char-900);background:linear-gradient(135deg,var(--amber),var(--ember));
+  min-width:42px;height:42px;border-radius:12px;display:grid;place-items:center}
+.layers b{display:block;font-size:1.05rem;color:var(--cream)}
+.layers span{font-size:.88rem;color:var(--smoke)}
+@media(max-width:880px){.build-grid{grid-template-columns:1fr;gap:50px}}
+
+/* ============================================================ NÚMEROS */
+.stats{background:linear-gradient(180deg,var(--char-900),var(--char-700));border-top:1px solid var(--line)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat .num{font-family:"Anton";font-size:clamp(2.6rem,6vw,4.4rem);line-height:1;
+  color:transparent;background:linear-gradient(120deg,var(--gold),var(--ember));-webkit-background-clip:text;background-clip:text}
+.stat .lbl{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--smoke);margin-top:8px}
+@media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}}
+
+/* ============================================================ GALERIA / CARROSSEL INFINITO */
+.gallery-sec{position:relative;background:#000;overflow:hidden}            /* fundo preto absoluto */
+/* partículas/luzes douradas e laranja no fundo (geradas via JS) */
+.gallery-particles{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.gallery-particles .spark{position:absolute;border-radius:50%;
+  filter:blur(.3px);opacity:.65;animation:sparkTwinkle 4s ease-in-out infinite}
+@keyframes sparkTwinkle{0%,100%{opacity:.15;transform:translateY(0) scale(.8)}50%{opacity:.85;transform:translateY(-8px) scale(1.15)}}
+
+/* área do carrossel — full-bleed, com fade nas laterais */
+.carousel{--card:214px;--gap:18px;position:relative;z-index:2;display:flex;flex-direction:column;gap:var(--gap);width:100%;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.carousel-row{display:flex;overflow:hidden}
+.carousel-track{display:flex;gap:var(--gap);width:max-content;flex:0 0 auto;will-change:transform}
+/* linha 1 e linha 2 — direita -> esquerda, velocidades levemente diferentes */
+.carousel-row--1 .carousel-track{animation:scrollLeft 46s linear infinite}
+.carousel-row--2 .carousel-track{animation:scrollLeft 38s linear infinite}
+@keyframes scrollLeft{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+/* pausa ao passar o mouse */
+.carousel:hover .carousel-track{animation-play-state:paused}
+/* cards */
+.ccard{flex:0 0 auto;width:var(--card);height:var(--card);border-radius:18px;overflow:hidden;
+  border:1px solid rgba(255,170,60,.45);                                   /* borda dourada/âmbar */
+  box-shadow:0 14px 34px -16px rgba(0,0,0,.85),inset 0 0 0 1px rgba(255,138,23,.08);
+  background:#120c08;transition:transform .4s var(--ease),border-color .4s,box-shadow .4s}
+.ccard img{width:100%;height:100%;object-fit:cover;display:block}
+.ccard:hover{transform:translateY(-6px) scale(1.03);border-color:var(--amber);
+  box-shadow:0 26px 50px -18px rgba(255,90,31,.55)}
+@media(max-width:760px){.carousel{--card:230px;--gap:14px}}
+@media(max-width:460px){.carousel{--card:200px;--gap:12px}}
+@media(prefers-reduced-motion:reduce){.carousel-track{animation:none}}
+
+/* ============================================================ EFEITO 3D PREMIUM (reutilizável) */
+/* Classe base: profundidade + transição fluida. Aplique .premium-3d + uma variante. */
+.premium-3d{position:relative;transform-style:preserve-3d;
+  transition:transform .26s var(--ease),box-shadow .26s ease,border-color .26s ease}
+
+/* Reflexo de luz diagonal (só nos cards/selos — botões já usam ::before p/ o preenchimento) */
+.premium-3d--card::before,.premium-3d--selo::before{content:"";position:absolute;inset:0;border-radius:inherit;
+  pointer-events:none;z-index:3;opacity:0;transition:opacity .26s ease;
+  background:linear-gradient(135deg,rgba(255,214,126,.22),transparent 38%,rgba(255,95,24,.10))}
+.premium-3d--card:hover::before,.premium-3d--card:focus-visible::before,
+.premium-3d--selo:hover::before,.premium-3d--selo:focus-visible::before{opacity:1}
+
+/* Borda iluminada: luz âmbar/laranja percorrendo o contorno (acende no hover) */
+@property --bd-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+.premium-3d--card::after,.premium-3d--selo::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  padding:1.4px;z-index:4;pointer-events:none;opacity:0;transition:opacity .3s ease;
+  background:conic-gradient(from var(--bd-angle),
+    transparent 0deg,rgba(255,90,20,.15) 40deg,var(--amber) 90deg,#ffe6aa 120deg,
+    var(--ember-hot) 150deg,transparent 210deg,transparent 360deg);
+  /* recorta só a faixa da borda */
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+          mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude}
+.premium-3d--card:hover::after,.premium-3d--card:focus-visible::after,
+.premium-3d--selo:hover::after,.premium-3d--selo:focus-visible::after{opacity:1;animation:bdSpin 3.6s linear infinite}
+@keyframes bdSpin{to{--bd-angle:360deg}}
+
+/* ---- Variante CARDS de imagem (.card do menu e .ccard do carrossel) ---- */
+.premium-3d--card{border:1px solid rgba(255,148,32,.30);
+  box-shadow:0 18px 35px rgba(0,0,0,.6),0 0 18px rgba(255,112,24,.10),inset 0 1px 0 rgba(255,211,128,.12)}
+.premium-3d--card:hover,.premium-3d--card:focus-visible{border-color:rgba(255,173,58,.85);
+  box-shadow:0 28px 55px -10px rgba(0,0,0,.78),0 0 34px rgba(255,126,24,.30),inset 0 1px 0 rgba(255,230,170,.32)}
+/* elevação 3D (usada quando NÃO há tilt por JS; com tilt o JS assume via inline style) */
+.premium-3d--card:hover{transform:perspective(900px) rotateX(4deg) rotateY(-6deg) translateY(-8px) scale(1.02)}
+.premium-3d--card:active{transform:translateY(-2px) scale(.995)}
+
+/* ---- Variante SELO/bloco pequeno (.pillar) ---- */
+.premium-3d--selo{border:1px solid rgba(255,148,32,.32);
+  box-shadow:0 14px 30px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,211,128,.14)}
+.premium-3d--selo:hover,.premium-3d--selo:focus-visible{border-color:rgba(255,173,58,.85);
+  box-shadow:0 22px 44px -12px rgba(0,0,0,.7),0 0 26px rgba(255,126,24,.26),inset 0 1px 0 rgba(255,230,170,.3)}
+.premium-3d--selo:hover{transform:perspective(800px) rotateX(5deg) rotateY(-5deg) translateY(-6px) scale(1.02)}
+.premium-3d--selo:active{transform:translateY(-1px) scale(.997)}
+
+/* ---- Variante BOTÃO (.btn) — sem ::before próprio p/ não conflitar com o preenchimento ---- */
+.premium-3d--btn{border:1px solid rgba(255,148,32,.40)}
+.premium-3d--btn:hover{transform:translateY(-5px) scale(1.015);
+  box-shadow:0 22px 46px -12px rgba(255,61,16,.75),0 0 26px rgba(255,126,24,.30)}
+.premium-3d--btn:active{transform:translateY(1px) scale(.985)}
+.premium-3d--btn:focus-visible{outline:2px solid rgba(255,173,58,.65);outline-offset:3px}
+
+/* Tilt por JS: enquanto segue o mouse, sombra/realce ficam ativos mesmo sem :hover */
+.premium-3d[data-tilt]{cursor:pointer}
+
+/* Acessibilidade: respeitar movimento reduzido */
+@media(prefers-reduced-motion:reduce){
+  .premium-3d,.premium-3d--card,.premium-3d--selo,.premium-3d--btn{transition:box-shadow .2s ease,border-color .2s ease}
+  .premium-3d--card:hover,.premium-3d--selo:hover,.premium-3d--btn:hover,
+  .premium-3d--card:active,.premium-3d--selo:active,.premium-3d--btn:active{transform:none}
+  .premium-3d--card:hover::after,.premium-3d--selo:hover::after{animation:none}
+}
+
+/* ============================================================ LOCAL / CONTATO */
+.contact{position:relative;overflow:hidden;background:var(--char-800);border-top:1px solid var(--line)}
+.contact .wrap{position:relative;z-index:2}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:stretch}
+.info-list{list-style:none;margin:34px 0}
+.info-list li{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.info-list .ic{width:46px;height:46px;border-radius:12px;flex:none;display:grid;place-items:center;font-size:1.2rem;
+  background:rgba(255,138,23,.08);border:1px solid var(--line)}
+.info-list b{display:block;color:var(--cream);font-size:1rem}
+.info-list span{color:var(--smoke);font-size:.9rem}
+.info-list a{color:var(--flame);text-decoration:none}
+.hours{margin-top:24px;border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(255,138,23,.03)}
+.hours h4{font-family:"Bricolage Grotesque";font-size:1rem;margin-bottom:14px;color:var(--cream);display:flex;align-items:center;gap:8px}
+.hours .row{display:flex;justify-content:space-between;font-size:.9rem;padding:7px 0;color:var(--smoke)}
+.hours .row b{color:var(--cream);font-weight:600}
+.hours .open-pill{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#0a3d10;background:#7CFF8E;
+  padding:3px 10px;border-radius:100px;font-weight:700}
+.map-wrap{border-radius:18px;overflow:hidden;border:1px solid var(--line);min-height:420px;position:relative;filter:grayscale(.2) contrast(1.05)}
+.map-wrap iframe{width:100%;height:100%;min-height:420px;border:0;filter:invert(.92) hue-rotate(180deg) saturate(.8)}
+@media(max-width:880px){.contact-grid{grid-template-columns:1fr;gap:40px}}
+
+/* ============================================================ CTA FINAL */
+.cta-final{position:relative;text-align:center;padding:140px 0;overflow:hidden}
+.cta-final .glow{position:absolute;width:70vw;height:70vw;left:50%;top:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(255,61,16,.4),transparent 60%);filter:blur(70px);z-index:0}
+.cta-final h2{position:relative;z-index:2;font-size:clamp(2.6rem,8vw,6rem);line-height:.95}
+.cta-final h2 em{font-style:normal;color:transparent;background:linear-gradient(100deg,var(--amber),var(--ember));-webkit-background-clip:text;background-clip:text}
+.cta-final p{position:relative;z-index:2;color:var(--smoke);max-width:50ch;margin:1.4em auto 2.4em;font-size:1.1rem}
+.cta-final .hero-actions{justify-content:center;position:relative;z-index:2}
+
+/* ============================================================ FOOTER */
+footer{position:relative;overflow:hidden;background:var(--char-900);border-top:1px solid var(--line);padding:70px 0 36px}
+/* mascote surgindo do canto inferior esquerdo */
+.foot-mascot{position:absolute;left:clamp(6px,2vw,40px);bottom:0;z-index:1;
+  width:clamp(104px,12vw,156px);height:auto;pointer-events:none;
+  filter:drop-shadow(0 8px 24px rgba(255,90,20,.28))}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.foot-brand .brand{margin-bottom:18px}
+.foot-brand p{color:var(--smoke);font-size:.92rem;max-width:34ch}
+.foot-soc{display:flex;gap:12px;margin-top:20px}
+.foot-soc a{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;
+  color:var(--cream);text-decoration:none;transition:.35s var(--ease)}
+.foot-soc a:hover{background:linear-gradient(135deg,var(--ember),var(--amber));color:#180a04;transform:translateY(-4px)}
+.foot-col h5{font-family:"Bricolage Grotesque";font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--flame);margin-bottom:18px}
+.foot-col a{display:block;color:var(--smoke);text-decoration:none;font-size:.92rem;padding:6px 0;transition:.3s}
+.foot-col a:hover{color:var(--cream);padding-left:6px}
+.foot-bot{position:relative;z-index:2;border-top:1px solid var(--line);padding-top:26px;padding-left:170px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--smoke);font-size:.82rem}
+.foot-bot a{color:var(--flame);text-decoration:none}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:34px}
+  footer{padding-bottom:118px}
+  .foot-bot{padding-left:0;justify-content:center;text-align:center}
+  .foot-mascot{width:98px;opacity:.92}}
+
+/* ---------- floating whatsapp ---------- */
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:8000;width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,#25D366,#128C7E);display:grid;place-items:center;color:#fff;font-size:1.7rem;
+  text-decoration:none;box-shadow:0 14px 30px -8px rgba(37,211,102,.6);
+  transition:background .45s var(--ease),box-shadow .45s var(--ease),transform .4s var(--ease),filter .45s var(--ease);cursor:pointer}
+.wa-float:hover{transform:scale(1.12) rotate(6deg);
+  background:
+    radial-gradient(circle at 36% 38%,rgba(255,245,200,1),transparent 36%),
+    radial-gradient(circle at 70% 72%,rgba(190,60,10,.65),transparent 52%),
+    radial-gradient(circle at 50% 50%,#ffc23a,#ff5a1f 50%,#b8260a 100%);
+  box-shadow:0 0 34px rgba(255,190,70,1),0 0 90px rgba(255,90,20,.9),0 0 150px rgba(255,60,15,.6),
+    inset 0 0 16px rgba(255,150,40,.55),0 14px 36px -8px rgba(196,18,8,.8);
+  filter:saturate(1.25) brightness(1.22);animation:waEmber 1s ease-in-out infinite}
+.wa-float:active{transform:scale(1.05) rotate(3deg);
+  background:
+    radial-gradient(circle at 36% 42%,rgba(255,180,70,.9),transparent 26%),
+    radial-gradient(circle at 70% 70%,rgba(50,8,2,.95),transparent 50%),
+    radial-gradient(circle at 50% 50%,#ff5a1f,#c41208 55%,#1c0c05 100%);
+  box-shadow:0 0 32px rgba(255,90,20,1),0 0 95px rgba(255,40,10,.88),0 0 160px rgba(180,20,5,.55),inset 0 0 18px rgba(120,0,0,.65)}
+/* brilho de brasa pulsando (mais forte) */
+@keyframes waEmber{
+  0%,100%{box-shadow:0 0 24px rgba(255,150,35,.85),0 0 60px rgba(255,61,16,.6),0 0 110px rgba(255,40,10,.4),0 14px 36px -8px rgba(196,18,8,.8)}
+  50%    {box-shadow:0 0 40px rgba(255,190,60,1),0 0 100px rgba(255,80,20,.9),0 0 170px rgba(255,40,10,.55),0 14px 36px -8px rgba(196,18,8,.9)}}
+
+/* ===== borda queimando que vira cinzas (anel girando: brasa -> cinza) ===== */
+@property --wa-ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+.wa-float::before{content:"";position:absolute;inset:-4px;border-radius:50%;z-index:-1;opacity:0;
+  transition:opacity .4s ease;filter:blur(2.5px) contrast(1.1);
+  background:conic-gradient(from var(--wa-ang,0deg),
+    #ffd24d 0deg,#ff7a18 28deg,#ff3d10 60deg,#c41208 92deg,
+    #5a5a5a 120deg,#9a9a9a 150deg,#3a3a3a 180deg,            /* trecho de cinzas */
+    #ff5a1f 230deg,#ffb23a 290deg,#ffd24d 360deg)}
+.wa-float:hover::before,.wa-float:active::before{opacity:1;animation:waBurn 2.4s linear infinite}
+@keyframes waBurn{to{--wa-ang:360deg}}
+
+/* anel: verde em repouso, vira brasa no hover/clique */
+.wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:pulse 2s ease-out infinite}
+.wa-float:hover::after,.wa-float:active::after{border-color:#ff5a1f}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+@media(prefers-reduced-motion:reduce){.wa-float:hover,.wa-float:hover::before,.wa-float:active::before{animation:none}}
+/* fagulhas e cinzas voando (criadas via JS no hover) */
+.wa-ash{position:absolute;top:42%;left:58%;border-radius:50%;pointer-events:none;z-index:3;
+  will-change:transform,opacity}
+@keyframes waAshFly{from{transform:translate(0,0) scale(1);opacity:1}
+  to{transform:translate(var(--ax,60px),var(--ay,-60px)) scale(.2) rotate(140deg);opacity:0}}
+
+/* ===== camadas de realismo (injetadas via JS): textura de lava, chama, fumaça ===== */
+.wa-fx{position:absolute;pointer-events:none;opacity:0;transition:opacity .4s ease}
+.wa-float:hover .wa-fx,.wa-float:active .wa-fx{opacity:1}
+/* textura de lava rachada / carvão por cima da superfície */
+.wa-crack{inset:0;border-radius:50%;z-index:1;mix-blend-mode:multiply;opacity:.55;
+  background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0 0 0 -0.45'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size:140% 140%;background-position:center}
+/* cracks brilhantes (lava) por baixo, em screen */
+.wa-lava{inset:0;border-radius:50%;z-index:0;mix-blend-mode:screen;opacity:0;transition:opacity .4s ease;
+  background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><filter id='l'><feTurbulence type='turbulence' baseFrequency='0.06 0.12' numOctaves='3' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.45  0 0 0 0 0  0 0 0 0 0'/><feComponentTransfer><feFuncA type='gamma' exponent='3' amplitude='2'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23l)'/></svg>");
+  background-size:160% 160%;filter:blur(.4px)}
+.wa-float:hover .wa-lava,.wa-float:active .wa-lava{opacity:1;animation:waLava 3s linear infinite}
+@keyframes waLava{0%{background-position:0% 0%}100%{background-position:60% 40%}}
+/* chama lambendo a borda esquerda/superior */
+.wa-flame{left:-22%;right:-6%;top:-62%;height:120%;z-index:4;transform-origin:bottom center;
+  filter:blur(3px) contrast(1.25);opacity:.9;
+  background:
+    radial-gradient(closest-side at 30% 100%,#ffe680,#ff7a00 48%,transparent 70%),
+    radial-gradient(closest-side at 50% 100%,#ffc233,#ff3d10 52%,transparent 74%),
+    radial-gradient(closest-side at 70% 100%,#ffd24d,#ff5a1f 50%,transparent 72%);
+  background-repeat:no-repeat;background-size:55% 100%,60% 120%,52% 96%;
+  background-position:8% 100%,42% 100%,78% 100%}
+.wa-float:hover .wa-flame,.wa-float:active .wa-flame{animation:waFlame .42s ease-in-out infinite alternate}
+@keyframes waFlame{0%{transform:scaleY(.92) scaleX(1.02) translateY(2px);opacity:.78}
+  100%{transform:scaleY(1.12) scaleX(.97) translateY(-3px);opacity:1}}
+/* fumaça subindo */
+.wa-smoke{left:18%;top:-95%;width:64%;height:120%;z-index:5;border-radius:50%;filter:blur(9px);
+  background:radial-gradient(closest-side,rgba(150,150,150,.5),rgba(90,90,90,.2) 55%,transparent 72%)}
+.wa-float:hover .wa-smoke,.wa-float:active .wa-smoke{animation:waSmoke 2.6s ease-out infinite}
+@keyframes waSmoke{0%{opacity:0;transform:translateY(10%) scale(.7)}
+  30%{opacity:.55}100%{opacity:0;transform:translateY(-60%) scale(1.3) translateX(10%)}}
+@media(prefers-reduced-motion:reduce){.wa-lava,.wa-flame,.wa-smoke{animation:none!important}}
+
+/* ---------- reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}.reveal.d6{transition-delay:.48s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* ============================================================ MOBILE TUNING */
+@media(max-width:760px){
+  .sec-pad{padding:92px 0}
+  .shead{margin-bottom:44px}
+  .hero-actions{width:100%}
+  .firewrap{flex:1 1 auto}
+  .hero-actions .btn{width:100%;justify-content:center}
+}
+@media(max-width:560px){
+  :root{--maxw:100%}
+  .wrap{padding:0 18px}
+  .nav-inner{padding:16px 18px}
+  .nav.scrolled .nav-inner{padding:11px 18px}
+  .brand{font-size:1.25rem}
+  .brand-logo{width:36px;height:36px}
+  .sec-pad{padding:76px 0}
+  .hero{padding-top:100px;min-height:auto}
+  .hero h1{font-size:clamp(2.5rem,11vw,3.6rem);margin:.12em 0 .45em}
+  .hero p.lead{font-size:1rem}
+  .hero-meta{gap:18px 26px;margin-top:2em}
+  .hero-meta .m b{font-size:1.4rem}
+  .hero-visual{max-width:360px}
+  .hb-1,.hb-2{padding:9px 12px}
+  .hero-badge .ic{width:30px;height:30px}
+  .hero-badge b{font-size:.85rem}
+  .hero-badge small{font-size:.62rem}
+  .marquee{padding:15px 0}
+  .marquee span{font-size:1.15rem;padding:0 18px;gap:18px}
+  .shead h2{font-size:clamp(2rem,8.5vw,2.6rem)}
+  .shead p{font-size:.96rem}
+  .about-grid{gap:56px}
+  .about-photos{aspect-ratio:1/1;max-width:360px;margin:0 auto}
+  .about-photos .tag{top:auto;right:14px;bottom:18px;padding:10px 13px;border-radius:12px}
+  .about-photos .tag b{font-size:1.55rem}
+  .about-photos .tag span{font-size:.6rem;letter-spacing:.12em}
+  .about-photos .p2{width:34%;height:34%;right:0;bottom:0}
+  .pillars{grid-template-columns:1fr 1fr;gap:12px}
+  .pillar{padding:15px 13px}
+  .menu-grid{gap:18px}
+  .menu-filters{gap:8px;margin-bottom:34px}
+  .filter{font-size:.8rem;padding:.55em 1.05em}
+  .card-body{padding:17px 18px 20px}
+  .build-grid{gap:42px}
+  .stack{max-width:340px;margin:0 auto}
+  .stats-grid{gap:38px 18px}
+  .contact-grid{gap:34px}
+  .map-wrap,.map-wrap iframe{min-height:320px}
+  .hours{padding:18px}
+  .cta-final{padding:90px 0}
+  .cta-final p{font-size:1rem}
+  .foot-grid{gap:30px}
+  .foot-bot{flex-direction:column;gap:10px;text-align:center}
+  .wa-float{width:54px;height:54px;right:16px;bottom:16px;font-size:1.5rem}
+  .wa-float .svgi{width:24px;height:24px}
+  .firewrap .flames{top:-18px;height:30px}
+}
+@media(max-width:380px){
+  .hero h1{font-size:9.4vw}
+  .pillars{grid-template-columns:1fr}
+  .hero-meta{gap:14px 20px}
+  .hero-meta .m b{font-size:1.25rem}
+}
+
+
+/* paginas internas: espaco para o nav fixo */
+body.subpage{padding-top:96px}
